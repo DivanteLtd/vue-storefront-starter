@@ -1,0 +1,79 @@
+{
+  "elasticsearch": {
+    "httpAuth": "",
+    "host": "https://demo.vuestorefront.io/api/catalog",
+    "index": "vue_storefront_catalog"
+  },
+  "cart": {
+    "synchronize": false,
+    "synchronize_totals": false,
+    "create_endpoint": "https://demo.vuestorefront.io/api/cart/create?token={{token}}",
+    "updateitem_endpoint": "https://demo.vuestorefront.io/api/cart/update?token={{token}}&cartId={{cartId}}",
+    "deleteitem_endpoint": "https://demo.vuestorefront.io/api/cart/delete?token={{token}}&cartId={{cartId}}",
+    "pull_endpoint": "https://demo.vuestorefront.io/api/cart/pull?token={{token}}&cartId={{cartId}}",
+    "totals_endpoint": "https://demo.vuestorefront.io/api/cart/totals?token={{token}}&cartId={{cartId}}",
+    "paymentmethods_endpoint": "https://demo.vuestorefront.io/api/cart/payment-methods?token={{token}}&cartId={{cartId}}",
+    "shippingmethods_endpoint": "https://demo.vuestorefront.io/api/cart/shipping-methods?token={{token}}&cartId={{cartId}}",
+    "shippinginfo_endpoint": "https://demo.vuestorefront.io/api/cart/shipping-information?token={{token}}&cartId={{cartId}}",
+    "collecttotals_endpoint": "https://demo.vuestorefront.io/api/cart/collect-totals?token={{token}}&cartId={{cartId}}"
+  },
+  "products": {
+    "preventConfigurableChildrenDirectAccess": true,
+    "alwaysSyncPlatformPricesOver": false,
+    "clearPricesBeforePlatformSync": false,
+    "waitForPlatformSync": false,
+    "endpoint": "https://demo.vuestorefront.io/api/product",
+    "defaultFilters": [
+      "color",
+      "size",
+      "price",
+      "erin_recommends"
+    ]
+  },
+  "orders": {
+    "endpoint": "https://demo.vuestorefront.io/api/order",
+    "payment_methods_mapping": {}
+  },
+  "users": {
+    "endpoint": "https://demo.vuestorefront.io/api/user"
+  },
+  "stock": {
+    "synchronize": true,
+    "allowOutOfStockInCart": true,
+    "endpoint": "https://demo.vuestorefront.io/api/stock"
+  },
+  "images": {
+    "baseUrl": "https://demo.vuestorefront.io/img/",
+    "productPlaceholder": "/assets/placeholder.jpg"
+  },
+  "install": {
+    "is_local_backend": false,
+    "backend_dir": false
+  },
+  "demomode": true,
+  "tax": {
+    "defaultCountry": "PL",
+    "defaultRegion": "",
+    "calculateServerSide": true
+  },
+  "i18n": {
+    "defaultCountry": "US",
+    "defaultLanguage": "EN",
+    "availableLocale": [
+      "en-US",
+      "de-DE",
+      "fr-FR",
+      "es-ES"
+    ],
+    "defaultLocale": "en-US",
+    "currencyCode": "USD",
+    "currencySign": "$"
+  },
+  "mailchimp": {
+    "endpoint": "https://demo.vuestorefront.io/api/ext/mailchimp-subscribe/subscribe"
+  },
+  "theme": "@vue-storefront/theme-default",
+  "analytics": {
+    "id": false
+  }
+}

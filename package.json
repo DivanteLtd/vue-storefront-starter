@@ -1,0 +1,21 @@
+{
+  "name": "vue-storefront-bolierplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@vue-storefront/core": "^1.0.0",
+    "@vue-storefront/extension-droppoint-shipping": "^1.0.0",
+    "@vue-storefront/extension-google-analytics": "^1.0.0",
+    "@vue-storefront/extension-mailchimp-subscribe": "^1.0.0",
+    "@vue-storefront/extension-payment-backend-methods": "^1.0.0",
+    "@vue-storefront/extension-payment-cash-on-delivery": "^1.0.0",
+    "@vue-storefront/store": "^1.1.0",
+    "@vue-storefront/theme-default": "^1.1.0"
+  },
+  "scripts": {
+    "build:client": "webpack --config ./node_modules/@vue-storefront/core/build/webpack.prod.client.config.js --mode production --progress --hide-modules",
+    "build:server": "webpack --config ./node_modules/@vue-storefront/core/build/webpack.prod.server.config.js --mode production --progress --hide-modules"
+  }
+}
