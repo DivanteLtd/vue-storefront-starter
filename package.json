@@ -8,6 +8,7 @@
     "@vue-storefront/core": "^1.0.0",
     "@vue-storefront/extension-droppoint-shipping": "^1.0.0",
     "@vue-storefront/extension-google-analytics": "^1.0.0",
+    "@vue-storefront/extension-magento2-cms": "^1.0.0",
     "@vue-storefront/extension-mailchimp-subscribe": "^1.0.0",
     "@vue-storefront/extension-payment-backend-methods": "^1.0.0",
     "@vue-storefront/extension-payment-cash-on-delivery": "^1.0.0",
