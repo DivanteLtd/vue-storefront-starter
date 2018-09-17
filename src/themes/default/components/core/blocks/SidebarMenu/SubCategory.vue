@@ -104,22 +104,26 @@ export default {
     ...mapState({
       submenu: state => state.ui.submenu
     }),
-    styles () {
+    styles() {
       const pos = this.submenu.path.indexOf(this.id)
-      return pos !== -1 ? {
-        zIndex: pos + 1
-      } : false
+      return pos !== -1
+        ? {
+            zIndex: pos + 1
+          }
+        : false
     }
   },
   methods: {
-    logout () {
+    logout() {
       this.$bus.$emit('user-before-logout')
     },
-    notify (title) {
+    notify(title) {
       if (title === 'My loyalty card' || title === 'My product reviews') {
         this.$bus.$emit('notification', {
           type: 'warning',
-          message: i18n.t('This feature is not implemented yet! Please take a look at https://github.com/DivanteLtd/vue-storefront/issues for our Roadmap!'),
+          message: i18n.t(
+            'This feature is not implemented yet! Please take a look at https://github.com/DivanteLtd/vue-storefront/issues for our Roadmap!'
+          ),
           action1: { label: i18n.t('OK'), action: 'close' }
         })
       }
@@ -128,10 +132,10 @@ export default {
 }
 </script>
 <style scoped>
-  .sidebar-submenu {
-    left: 0;
-    top: 0;
-    min-height: 100%;
-    transform: translateX(-100%);
-  }
+.sidebar-submenu {
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  transform: translateX(-100%);
+}
 </style>

@@ -29,7 +29,7 @@ export default {
       social_tiles: 'social/getSocialTiles'
     })
   },
-  created () {
+  created() {
     this.updateSocialTiles(socialData)
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~theme/css/animations/transitions";
+@import '~theme/css/animations/transitions';
 
 .tile {
   display: flex;

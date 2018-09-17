@@ -54,46 +54,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '~theme/css/variables/colors';
-  @import '~theme/css/helpers/functions/color';
+@import '~theme/css/variables/colors';
+@import '~theme/css/helpers/functions/color';
 
-  $color-tertiary: color(tertiary);
-  $color-black: color(black);
-  $color-puerto-rico: color(puerto-rico);
-  $color-hover: color(tertiary, $colors-background);
+$color-tertiary: color(tertiary);
+$color-black: color(black);
+$color-puerto-rico: color(puerto-rico);
+$color-hover: color(tertiary, $colors-background);
 
-  textarea {
-    &:hover,
-    &:focus {
-      outline: none;
-      border-color: $color-puerto-rico;
-    }
-    resize: none;
-    background: inherit;
+textarea {
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: $color-puerto-rico;
   }
+  resize: none;
+  background: inherit;
+}
 
-  label {
-    color: #999;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    transition: 0.2s ease all;
-  }
+label {
+  color: #999;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+}
 
-  textarea:focus ~ label,
-  textarea:not(.empty) ~ label {
-    top: -10px;
-    font-size: 14px;
-    color: $color-puerto-rico;
-  }
+textarea:focus ~ label,
+textarea:not(.empty) ~ label {
+  top: -10px;
+  font-size: 14px;
+  color: $color-puerto-rico;
+}
 
-  .icon {
-    right: 6px;
-    top: 10px;
-    &:hover,
-    &:focus {
-      color: $color-hover;
-    }
+.icon {
+  right: 6px;
+  top: 10px;
+  &:hover,
+  &:focus {
+    color: $color-hover;
   }
+}
 </style>

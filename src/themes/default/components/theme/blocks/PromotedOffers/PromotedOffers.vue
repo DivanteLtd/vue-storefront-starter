@@ -83,7 +83,7 @@ export default {
       banners: 'promoted/getPromotedOffers'
     })
   },
-  created () {
+  created() {
     this.updatePromotedOffers(promotedOffers)
   },
   methods: {
@@ -95,51 +95,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .offer-container {
-    &:last-child {
-      padding-bottom: 0;
-    }
+.offer-container {
+  &:last-child {
+    padding-bottom: 0;
   }
-  .offer {
-    height: 735px;
-    flex-direction: column;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: 0.9;
-    transition: 0.3s all;
+}
+.offer {
+  height: 735px;
+  flex-direction: column;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  transition: 0.3s all;
 
-    &:hover {
-      opacity: 1;
-    }
-
-    @media (max-width: 767px) {
-      height: 200px;
-    }
+  &:hover {
+    opacity: 1;
   }
-  .offer-small {
-    height: 360px;
 
-    @media (max-width: 767px) {
-      height: 200px;
-    }
+  @media (max-width: 767px) {
+    height: 200px;
   }
-  .offer-product {
+}
+.offer-small {
+  height: 360px;
+
+  @media (max-width: 767px) {
+    height: 200px;
+  }
+}
+.offer-product {
+  height: 330px;
+  background-position: 50% 20%;
+
+  @media (max-width: 767px) {
     height: 330px;
-    background-position: 50% 20%;
-
-    @media (max-width: 767px) {
-      height: 330px;
-    }
   }
-  .title {
-    @media (max-width: 767px) {
-      font-size: 36px;
-    }
+}
+.title {
+  @media (max-width: 767px) {
+    font-size: 36px;
   }
-  .subtitle {
-    @media (max-width: 767px) {
-      font-size: 18px;
-    }
+}
+.subtitle {
+  @media (max-width: 767px) {
+    font-size: 18px;
   }
+}
 </style>

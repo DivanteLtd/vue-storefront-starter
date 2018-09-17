@@ -82,30 +82,30 @@ import VueOfflineMixin from 'vue-offline/mixin'
 export default {
   name: 'ThankYouPage',
   mixins: [Composite, VueOfflineMixin],
-  data () {
+  data() {
     return {
       feedback: ''
     }
   },
   computed: {
-    isNotificationSupported () {
+    isNotificationSupported() {
       if (Vue.prototype.$isServer || !('Notification' in window)) return false
       return 'Notification' in window
     },
-    isPermissionGranted () {
+    isPermissionGranted() {
       if (Vue.prototype.$isServer || !('Notification' in window)) return false
       return Notification.permission === 'granted'
     }
   },
   methods: {
-    requestNotificationPermission () {
+    requestNotificationPermission() {
       if (Vue.prototype.$isServer) return false
       if ('Notification' in window && Notification.permission !== 'granted') {
         Notification.requestPermission()
       }
     }
   },
-  destroyed () {
+  destroyed() {
     this.$store.dispatch('checkout/setThankYouPage', false)
   },
   components: {
@@ -117,28 +117,28 @@ export default {
 </script>
 
 <style lang="scss">
-  .thank-you-content {
-    padding-left: 0;
+.thank-you-content {
+  padding-left: 0;
 
-    p {
-      line-height: 25px
-    }
+  p {
+    line-height: 25px;
+  }
 
-    @media (min-width: 64em) {
-      h4 {
-        font-size: 24px;
-      }
+  @media (min-width: 64em) {
+    h4 {
+      font-size: 24px;
     }
   }
-  .thank-you-improvment {
-    padding: 0 20px 15px;
+}
+.thank-you-improvment {
+  padding: 0 20px 15px;
 
-    @media (min-width: 64em) {
-      padding: 0 40px 10px;
-    }
-
-    textarea {
-      min-height: 100px;
-    }
+  @media (min-width: 64em) {
+    padding: 0 40px 10px;
   }
+
+  textarea {
+    min-height: 100px;
+  }
+}
 </style>

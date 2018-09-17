@@ -25,7 +25,7 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       products: [],
       sliderConfig: {
@@ -39,23 +39,33 @@ export default {
   computed: {
     currentIndex: {
       cache: false,
-      get () {
+      get() {
         return this.$refs.carousel ? this.$refs.carousel.currentPage : 0
       }
     }
   },
-  beforeMount () {
-    let inspirationsQuery = builder().query('match', 'category.name', this.category).andQuery('range', 'status', { 'gte': 0, 'lt': 2 }).andQuery('range', 'visibility', { 'gte': 2, 'lte': 4 }/** Magento visibility in search & categories */).build()
+  beforeMount() {
+    let inspirationsQuery = builder()
+      .query('match', 'category.name', this.category)
+      .andQuery('range', 'status', { gte: 0, lt: 2 })
+      .andQuery(
+        'range',
+        'visibility',
+        { gte: 2, lte: 4 } /** Magento visibility in search & categories */
+      )
+      .build()
 
-    this.$store.dispatch('product/list', {
-      query: inspirationsQuery,
-      size: 12,
-      sort: 'created_at:desc'
-    }).then(res => {
-      if (res) {
-        this.products = res.items
-      }
-    })
+    this.$store
+      .dispatch('product/list', {
+        query: inspirationsQuery,
+        size: 12,
+        sort: 'created_at:desc'
+      })
+      .then(res => {
+        if (res) {
+          this.products = res.items
+        }
+      })
   },
   components: {
     ProductsSlider

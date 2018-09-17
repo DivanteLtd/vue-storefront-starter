@@ -107,7 +107,6 @@ $screen-l: 1170px;
 }
 
 .compare {
-
   &__products-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -141,7 +140,7 @@ $screen-l: 1170px;
     border-color: $border;
     border-width: 1px 0 1px 0;
     background-color: mix(#000, $color-white, 2%);
-    opacity: .95;
+    opacity: 0.95;
 
     @media (min-width: $screen-l) {
       width: $features-column-width;
@@ -154,7 +153,7 @@ $screen-l: 1170px;
     float: left;
     width: $products-column-width-mobile;
     text-align: center;
-    transition: opacity .3s, visibility .3s, transform .3s;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
 
     @media (min-width: $screen-l) {
       width: $products-column-width;
@@ -183,7 +182,7 @@ $screen-l: 1170px;
     border-color: $border;
     border-style: solid;
     border-width: 0 1px 0 0;
-    transition: height .3s;
+    transition: height 0.3s;
     cursor: pointer;
     background: $color-product-bg;
     overflow: hidden;

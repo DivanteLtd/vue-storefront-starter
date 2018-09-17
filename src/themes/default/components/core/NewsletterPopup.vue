@@ -50,7 +50,7 @@ import Modal from 'theme/components/core/Modal'
 import BaseInput from 'theme/components/core/blocks/Form/BaseInput.vue'
 
 export default {
-  data () {
+  data() {
     return {
       email: ''
     }
@@ -61,13 +61,13 @@ export default {
       email
     }
   },
-  mounted () {
+  mounted() {
     if (this.$store.state.user.current) {
       this.email = this.$store.state.user.current.email
     }
   },
   methods: {
-    submit () {
+    submit() {
       if (this.$v.$invalid) {
         this.$bus.$emit('notification', {
           type: 'error',
@@ -81,7 +81,9 @@ export default {
 
       this.$bus.$emit('notification', {
         type: 'success',
-        message: i18n.t('You have been successfully subscribed to our newsletter!'),
+        message: i18n.t(
+          'You have been successfully subscribed to our newsletter!'
+        ),
         action1: { label: i18n.t('OK'), action: 'close' }
       })
 

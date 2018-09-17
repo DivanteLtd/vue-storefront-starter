@@ -368,8 +368,8 @@ export default {
   },
   mixins: [MyProfile],
   computed: {
-    countryOptions () {
-      return this.countries.map((item) => {
+    countryOptions() {
+      return this.countries.map(item => {
         return {
           value: item.code,
           label: item.name
@@ -378,11 +378,15 @@ export default {
     }
   },
   methods: {
-    checkValidation () {
+    checkValidation() {
       if (this.changePassword && this.addCompany) {
         return this.$v.$invalid
       } else if (this.changePassword && !this.addCompany) {
-        return this.$v.currentUser.$invalid || this.$v.password.$invalid || this.$v.rPassword.$invalid
+        return (
+          this.$v.currentUser.$invalid ||
+          this.$v.password.$invalid ||
+          this.$v.rPassword.$invalid
+        )
       } else if (!this.changePassword && this.addCompany) {
         return this.$v.currentUser.$invalid || this.$v.userCompany.$invalid
       } else {

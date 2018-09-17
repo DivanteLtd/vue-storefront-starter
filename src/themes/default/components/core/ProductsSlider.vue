@@ -52,13 +52,13 @@ export default {
     'no-ssr': NoSSR
   },
   mixins: [ProductsSlider],
-  data () {
+  data() {
     return {
       currentPage: 0
     }
   },
   methods: {
-    setMuted (currentPage) {
+    setMuted(currentPage) {
       this.currentPage = currentPage
     }
   }
@@ -73,10 +73,10 @@ $color-product-bg: color(secondary, $colors-background);
 .collection-slider {
   overflow: hidden;
   .VueCarousel-wrapper {
-    overflow: visible!important;
+    overflow: visible !important;
     &:before,
     &:after {
-      content: "";
+      content: '';
       height: 100%;
       position: absolute;
       top: 0;
@@ -101,11 +101,21 @@ $color-product-bg: color(secondary, $colors-background);
     }
     &:before {
       right: 100%;
-      background: linear-gradient(to right, $color-product-bg 0%,$color-product-bg 40%,rgba($color-product-bg,0.2) 100%);
+      background: linear-gradient(
+        to right,
+        $color-product-bg 0%,
+        $color-product-bg 40%,
+        rgba($color-product-bg, 0.2) 100%
+      );
     }
     &:after {
       left: 100%;
-      background: linear-gradient(to left, $color-product-bg 0%,$color-product-bg 40%,rgba($color-product-bg,0.2) 100%);
+      background: linear-gradient(
+        to left,
+        $color-product-bg 0%,
+        $color-product-bg 40%,
+        rgba($color-product-bg, 0.2) 100%
+      );
     }
   }
 }

@@ -65,9 +65,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .summary-title {
-    @media (max-width: 767px) {
-      margin-left: 0;
-    }
+.summary-title {
+  @media (max-width: 767px) {
+    margin-left: 0;
   }
+}
 </style>

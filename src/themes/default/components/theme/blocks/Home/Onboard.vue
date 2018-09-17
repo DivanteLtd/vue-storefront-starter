@@ -41,7 +41,7 @@ export default {
     Modal
   },
   methods: {
-    close () {
+    close() {
       this.$bus.$emit('modal-hide', 'modal-onboard')
     }
   }
@@ -81,7 +81,7 @@ $z-index-notification: map-get($z-index, notification);
     width: 48%;
     top: 0;
     bottom: 0;
-    transform: translateX(-48%)
+    transform: translateX(-48%);
   }
 }
 

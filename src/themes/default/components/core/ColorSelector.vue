@@ -18,7 +18,7 @@ import GenericSelector from '@vue-storefront/core/components/GenericSelector'
 export default {
   mixins: [GenericSelector],
   methods: {
-    colorFrom (label) {
+    colorFrom(label) {
       if (label && label.toString().indexOf(',') >= 0) {
         return 'background: linear-gradient(' + label + ')'
       } else {
@@ -30,24 +30,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '~theme/css/variables/colors';
-  @import '~theme/css/helpers/functions/color';
-  $color-active: color(primary);
+@import '~theme/css/variables/colors';
+@import '~theme/css/helpers/functions/color';
+$color-active: color(primary);
 
-  .color {
-    width: 40px;
-    height: 40px;
+.color {
+  width: 40px;
+  height: 40px;
 
-    &.active {
-      border-color: $color-active;
-    }
+  &.active {
+    border-color: $color-active;
   }
+}
 
-  .color-inside {
-    width: 34px;
-    height: 34px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%)
-  }
+.color-inside {
+  width: 34px;
+  height: 34px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 </style>

@@ -90,7 +90,7 @@ export default {
     WishlistIcon
   },
   mixins: [Header, CurrentPage],
-  data () {
+  data() {
     return {
       navVisible: true,
       isScrolling: false,
@@ -105,7 +105,7 @@ export default {
       currentUser: state => state.user.current
     })
   },
-  beforeMount () {
+  beforeMount() {
     window.addEventListener('scroll', () => {
       this.isScrolling = true
     })
@@ -118,12 +118,15 @@ export default {
     }, 250)
   },
   methods: {
-    gotoAccount () {
+    gotoAccount() {
       this.$bus.$emit('modal-toggle', 'modal-signup')
     },
-    hasScrolled () {
+    hasScrolled() {
       this.scrollTop = window.scrollY
-      if (this.scrollTop > this.lastScrollTop && this.scrollTop > this.navbarHeight) {
+      if (
+        this.scrollTop > this.lastScrollTop &&
+        this.scrollTop > this.navbarHeight
+      ) {
         this.navVisible = false
       } else {
         this.navVisible = true
@@ -175,12 +178,13 @@ header {
     }
   }
   .col-xs-2:first-of-type {
-      padding-left: 0;
+    padding-left: 0;
   }
   .col-xs-2:last-of-type {
-      padding-right: 0;
+    padding-right: 0;
   }
-  a, span {
+  a,
+  span {
     font-size: 12px;
   }
 }

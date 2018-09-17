@@ -93,10 +93,10 @@ export default {
     }
   },
   methods: {
-    close () {
+    close() {
       this.$bus.$emit('modal-hide', 'modal-signup')
     },
-    login () {
+    login() {
       if (this.$v.$invalid) {
         this.$v.$touch()
         this.$bus.$emit('notification', {
@@ -107,28 +107,37 @@ export default {
         return
       }
 
-      this.$bus.$emit('notification-progress-start', i18n.t('Authorization in progress ...'))
-      this.$store.dispatch('user/login', { username: this.email, password: this.password }).then((result) => {
-        this.$bus.$emit('notification-progress-stop', {})
+      this.$bus.$emit(
+        'notification-progress-start',
+        i18n.t('Authorization in progress ...')
+      )
+      this.$store
+        .dispatch('user/login', {
+          username: this.email,
+          password: this.password
+        })
+        .then(result => {
+          this.$bus.$emit('notification-progress-stop', {})
 
-        if (result.code !== 200) {
-          this.$bus.$emit('notification', {
-            type: 'error',
-            message: i18n.t(result.result),
-            action1: { label: i18n.t('OK'), action: 'close' }
-          })
-        } else {
-          this.$bus.$emit('notification', {
-            type: 'success',
-            message: i18n.t('You are logged in!'),
-            action1: { label: i18n.t('OK'), action: 'close' }
-          })
-          this.close()
-        }
-      }).catch(err => {
-        console.error(err)
-        this.$bus.$emit('notification-progress-stop')
-      })
+          if (result.code !== 200) {
+            this.$bus.$emit('notification', {
+              type: 'error',
+              message: i18n.t(result.result),
+              action1: { label: i18n.t('OK'), action: 'close' }
+            })
+          } else {
+            this.$bus.$emit('notification', {
+              type: 'success',
+              message: i18n.t('You are logged in!'),
+              action1: { label: i18n.t('OK'), action: 'close' }
+            })
+            this.close()
+          }
+        })
+        .catch(err => {
+          console.error(err)
+          this.$bus.$emit('notification-progress-stop')
+        })
     }
   },
   components: {
@@ -140,10 +149,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .modal-content {
-    @media (max-width: 400px) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
+.modal-content {
+  @media (max-width: 400px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
+}
 </style>

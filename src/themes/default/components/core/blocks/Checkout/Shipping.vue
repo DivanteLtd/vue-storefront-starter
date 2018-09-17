@@ -272,8 +272,8 @@ export default {
   },
   mixins: [shipping],
   computed: {
-    countryOptions () {
-      return this.countries.map((item) => {
+    countryOptions() {
+      return this.countries.map(item => {
         return {
           value: item.code,
           label: item.name

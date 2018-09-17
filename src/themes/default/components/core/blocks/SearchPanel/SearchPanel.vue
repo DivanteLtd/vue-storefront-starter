@@ -62,7 +62,7 @@ export default {
     ProductTile
   },
   mixins: [SearchPanel, VueOfflineMixin],
-  mounted () {
+  mounted() {
     this.$bus.$on('focusSearchInput', () => {
       if (!this.$store.state.ui.searchpanel) {
         this.$refs.search.focus()
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~theme/css/animations/transitions";
+@import '~theme/css/animations/transitions';
 
 .searchpanel {
   height: 100vh;
@@ -87,7 +87,7 @@ export default {
   overflow-x: hidden;
 
   &.active {
-    transform: translateX(0)
+    transform: translateX(0);
   }
 
   .product {
@@ -117,7 +117,7 @@ i:hover {
   background: #fff;
 }
 
-@media only screen and (max-width:50em) {
+@media only screen and (max-width: 50em) {
   .searchpanel .product {
     width: 50%;
     box-sizing: border-box;

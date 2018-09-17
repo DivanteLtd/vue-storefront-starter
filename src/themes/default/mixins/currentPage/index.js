@@ -1,5 +1,5 @@
 export default {
-  data () {
+  data() {
     return {
       productPageRoutes: [
         'product',
@@ -15,15 +15,15 @@ export default {
     }
   },
   watch: {
-    '$route.name': function () {
+    '$route.name': function() {
       this.setCurrentPage()
     }
   },
-  created () {
+  created() {
     this.setCurrentPage()
   },
   methods: {
-    setCurrentPage () {
+    setCurrentPage() {
       this.isProductPage = this.productPageRoutes.includes(this.$route.name)
       this.isCheckoutPage = this.$route.name === 'checkout'
     }

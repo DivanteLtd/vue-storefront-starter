@@ -1,115 +1,111 @@
 const path = require('path')
 const themePath = require('./scripts/theme-path')
 
-const TARGET_NODE = process.env.WEBPACK_TARGET === "node"
+const TARGET_NODE = process.env.WEBPACK_TARGET === 'node'
 
 const createApiFile = TARGET_NODE
-  ? "./create-api-server.js"
-  : "./create-api-client.js"
+  ? './create-api-server.js'
+  : './create-api-client.js'
 
 module.exports = {
   pwa: {
-    workboxPluginMode: "GenerateSW",
+    workboxPluginMode: 'GenerateSW',
     workboxOptions: {
-      cacheId: "vue-sfr",
-      globPatterns: [
-        "dist/**.*",
-        "index.html",
-        "/"
-      ],
+      cacheId: 'vue-sfr',
+      globPatterns: ['dist/**.*', 'index.html', '/'],
       globIgnores: [/\.map$/],
       runtimeCaching: [
         {
-          urlPattern: "^https://fonts.googleapis.com/",
-          handler: "cacheFirst"
+          urlPattern: '^https://fonts.googleapis.com/',
+          handler: 'cacheFirst'
         },
         {
-          urlPattern: "^https://fonts.gstatic.com/",
-          handler: "cacheFirst"
+          urlPattern: '^https://fonts.gstatic.com/',
+          handler: 'cacheFirst'
         },
         {
-          urlPattern: "/",
-          handler: "staleWhileRevalidate"
+          urlPattern: '/',
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/p/*", // Product URLs
-          handler: "staleWhileRevalidate"
+          urlPattern: '/p/*', // Product URLs
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/c/*", // Category URLs
-          handler: "staleWhileRevalidate"
+          urlPattern: '/c/*', // Category URLs
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/img/(.*)",
-          handler: "staleWhileRevalidate"
+          urlPattern: '/img/(.*)',
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/api/catalog/*",
-          handler: "staleWhileRevalidate"
+          urlPattern: '/api/catalog/*',
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/api/*",
-          handler: "networkFirst"
+          urlPattern: '/api/*',
+          handler: 'networkFirst'
         },
         {
-          urlPattern: "/assets/logo.svg",
-          handler: "networkFirst"
+          urlPattern: '/assets/logo.svg',
+          handler: 'networkFirst'
         },
         {
-          urlPattern: "/index.html",
-          handler: "staleWhileRevalidate"
+          urlPattern: '/index.html',
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/assets/*",
-          handler: "staleWhileRevalidate"
+          urlPattern: '/assets/*',
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/assets/ig/(.*)",
-          handler: "staleWhileRevalidate"
+          urlPattern: '/assets/ig/(.*)',
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/dist/(.*)",
-          handler: "staleWhileRevalidate"
+          urlPattern: '/dist/(.*)',
+          handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: "/*/*", // Product URLs
-          handler: "networkFirst"
+          urlPattern: '/*/*', // Product URLs
+          handler: 'networkFirst'
         },
         {
-          urlPattern: "/*/*/*", // Product URLs
-          handler: "networkFirst"
+          urlPattern: '/*/*/*', // Product URLs
+          handler: 'networkFirst'
         },
         {
-          urlPattern: "/*", // Category URLs
-          handler: "networkFirst"
+          urlPattern: '/*', // Category URLs
+          handler: 'networkFirst'
         }
       ],
-      importScripts: ["/dist/core-service-worker.js"]
+      importScripts: ['/dist/core-service-worker.js']
     }
   },
   configureWebpack: {
     resolve: {
       alias: {
-        config: path.resolve(__dirname, "./config/local.json"),
-        core: "@vue-storefront/core",
-        src: path.resolve(__dirname, "./src"),
-        "@vue-storefront/core/lib/i18n": "@vue-storefront/i18n",
+        config: path.resolve(__dirname, './config/local.json'),
+        core: '@vue-storefront/core',
+        src: path.resolve(__dirname, './src'),
+        '@vue-storefront/core/lib/i18n': '@vue-storefront/i18n',
         theme: themePath,
-        "create-api": createApiFile
+        'create-api': createApiFile
       }
     }
   },
   chainWebpack: config => {
     config.module
-      .rule("markdown")
+      .rule('markdown')
       .test(/\.md$/)
-      .use("vue")
-      .loader("vue-loader")
+      .use('vue')
+      .loader('vue-loader')
       .end()
-      .use("markdown-to-vue")
-      .loader("markdown-to-vue-loader")
+      .use('markdown-to-vue')
+      .loader('markdown-to-vue-loader')
       .options({
-        componentWrapper: "div"
+        componentWrapper: 'div'
       })
       .end()
   },

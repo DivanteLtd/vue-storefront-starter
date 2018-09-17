@@ -16,17 +16,17 @@ export default {
   directives: { focusClean },
   components: { ButtonFull },
   methods: {
-    onAfterRemovedVariant () {
+    onAfterRemovedVariant() {
       this.$forceUpdate()
     },
-    canBeAdded (product: Product): boolean {
+    canBeAdded(product: Product): boolean {
       return formatProductMessages(product.errors) !== ''
     }
   },
-  created () {
+  created() {
     this.$bus.$on('product-after-removevariant', this.onAfterRemovedVariant)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.$bus.$off('product-after-removevariant')
   }
 }

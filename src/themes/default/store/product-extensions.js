@@ -4,11 +4,10 @@
 import coreStore from '@vue-storefront/store/modules/product'
 import { extendStore } from '@vue-storefront/core/lib/themes'
 
-const state = {
-}
+const state = {}
 
 const actions = {
-  example () {
+  example() {
     console.debug('Hello from example product Vuex action')
   }
 }

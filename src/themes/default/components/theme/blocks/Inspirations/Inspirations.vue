@@ -15,21 +15,25 @@ import InspirationTile from './InspirationTile.vue'
 export default {
   name: 'Inspirations',
 
-  beforeMount () {
-    let inspirationsQuery = builder().query('match', 'category.name', 'Performance Fabrics').build()
+  beforeMount() {
+    let inspirationsQuery = builder()
+      .query('match', 'category.name', 'Performance Fabrics')
+      .build()
 
-    this.$store.dispatch('product/list', {
-      query: inspirationsQuery,
-      size: 3,
-      sort: 'created_at:desc'
-    }).then(res => {
-      if (res) {
-        this.products = res.items
-      }
-    })
+    this.$store
+      .dispatch('product/list', {
+        query: inspirationsQuery,
+        size: 3,
+        sort: 'created_at:desc'
+      })
+      .then(res => {
+        if (res) {
+          this.products = res.items
+        }
+      })
   },
 
-  data () {
+  data() {
     return {
       products: []
     }

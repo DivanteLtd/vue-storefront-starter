@@ -128,106 +128,106 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "~theme/css/animations/transitions";
+@import '~theme/css/animations/transitions';
 
-  .microcart {
-    top: 0;
-    right: 0;
-    z-index: 3;
-    height: 100%;
-    width: 800px;
-    min-width: 320px;
-    transform: translateX(100%);
-    transition: transform 300ms $motion-main;
-    overflow-y: auto;
-    overflow-x: hidden;
-    &.active {
-      transform: translateX(0)
-    }
+.microcart {
+  top: 0;
+  right: 0;
+  z-index: 3;
+  height: 100%;
+  width: 800px;
+  min-width: 320px;
+  transform: translateX(100%);
+  transition: transform 300ms $motion-main;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &.active {
+    transform: translateX(0);
   }
+}
 
-  .close {
+.close {
+  i {
+    opacity: 0.6;
+  }
+  &:hover,
+  &:focus {
     i {
-      opacity: 0.6;
+      opacity: 1;
     }
-    &:hover,
-    &:focus {
-      i {
-        opacity: 1;
+  }
+}
+
+.heading {
+  @media (max-width: 767px) {
+    margin: 12px 0 12px 15px;
+    font-size: 24px;
+  }
+}
+
+.products {
+  @media (max-width: 767px) {
+    padding: 30px 15px;
+  }
+}
+
+.actions {
+  @media (max-width: 767px) {
+    padding: 0 15px;
+  }
+  .link {
+    @media (max-width: 767px) {
+      display: flex;
+      justify-content: center;
+      padding: 20px 70px;
+      &.checkout {
+        margin-top: 55px;
+        padding: 0;
       }
     }
   }
+}
 
-  .heading {
-    @media (max-width: 767px) {
-      margin: 12px 0 12px 15px;
-      font-size: 24px;
-    }
+.summary {
+  @media (max-width: 767px) {
+    padding: 0 15px;
+    font-size: 12px;
+  }
+}
+
+.summary-heading {
+  @media (max-width: 767px) {
+    font-size: 18px;
+  }
+}
+
+.total-price-label {
+  @media (max-width: 767px) {
+    font-size: 18px;
+  }
+}
+
+.total-price-value {
+  @media (max-width: 767px) {
+    font-size: 24px;
+  }
+}
+
+.delete-button {
+  vertical-align: middle;
+}
+
+.coupon-wrapper {
+  display: flex;
+
+  .button-outline {
+    text-transform: inherit;
+    width: 50%;
   }
 
-  .products {
-    @media (max-width: 767px) {
-      padding: 30px 15px;
-    }
+  .coupon-input {
+    margin-right: 20px;
+    width: 100%;
   }
-
-  .actions {
-    @media (max-width: 767px) {
-      padding: 0 15px;
-    }
-    .link {
-      @media (max-width: 767px) {
-        display: flex;
-        justify-content: center;
-        padding: 20px 70px;
-        &.checkout {
-          margin-top: 55px;
-          padding: 0;
-        }
-      }
-    }
-  }
-
-  .summary {
-    @media (max-width: 767px) {
-      padding:  0 15px;
-      font-size: 12px;
-    }
-  }
-
-  .summary-heading {
-    @media (max-width: 767px) {
-      font-size: 18px;
-    }
-  }
-
-  .total-price-label {
-    @media (max-width: 767px) {
-      font-size: 18px;
-    }
-  }
-
-  .total-price-value {
-    @media (max-width: 767px) {
-      font-size: 24px;
-    }
-  }
-
-  .delete-button {
-    vertical-align: middle;
-  }
-
-  .coupon-wrapper {
-    display: flex;
-
-    .button-outline {
-      text-transform: inherit;
-      width: 50%;
-    }
-
-    .coupon-input {
-      margin-right: 20px;
-      width: 100%;
-    }
-  }
+}
 </style>

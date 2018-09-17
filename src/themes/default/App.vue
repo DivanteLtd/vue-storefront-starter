@@ -48,7 +48,7 @@ import OrderConfirmation from './components/core/blocks/Checkout/OrderConfirmati
 import Head from 'theme/resource/head'
 
 export default {
-  data () {
+  data() {
     return {
       ordersData: []
     }
@@ -58,7 +58,7 @@ export default {
       overlayActive: state => state.ui.overlay
     })
   },
-  created () {
+  created() {
     // Progress bar on top of the page
     this.$router.beforeEach((to, from, next) => {
       this.$Progress.start()
@@ -68,7 +68,7 @@ export default {
     this.$router.afterEach((to, from) => {
       this.$Progress.finish()
     })
-    EventBus.$on('offline-order-confirmation', (payload) => {
+    EventBus.$on('offline-order-confirmation', payload => {
       this.ordersData = payload
       EventBus.$emit('modal-show', 'modal-order-confirmation')
     })
@@ -96,5 +96,4 @@ export default {
 </script>
 
 <style lang="scss" src="./css/main.scss">
-
 </style>

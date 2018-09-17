@@ -32,11 +32,14 @@ import AccountIcon from '@vue-storefront/core/components/blocks/Header/AccountIc
 
 export default {
   mixins: [AccountIcon],
-  data () {
+  data() {
     return {
       navigation: [
         { title: i18n.t('My profile'), link: '/my-account' },
-        { title: i18n.t('My shipping details'), link: '/my-account/shipping-details' },
+        {
+          title: i18n.t('My shipping details'),
+          link: '/my-account/shipping-details'
+        },
         { title: i18n.t('My newsletter'), link: '/my-account/newsletter' },
         { title: i18n.t('My orders'), link: '/my-account/orders' },
         { title: i18n.t('My loyalty card'), link: '#' },
@@ -54,7 +57,6 @@ export default {
 $color-icon-hover: color(secondary, $colors-background);
 
 .dropdown {
-
   button {
     pointer-events: none;
   }
@@ -66,18 +68,17 @@ $color-icon-hover: color(secondary, $colors-background);
     top: 100%;
     width: 160px;
     z-index: 1;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
   a {
-    opacity: .6;
+    opacity: 0.6;
 
     &:hover,
     &:focus {
       background-color: $color-icon-hover;
       opacity: 1;
     }
-
   }
 
   @media (min-width: 768px) {
@@ -85,6 +86,5 @@ $color-icon-hover: color(secondary, $colors-background);
       display: block;
     }
   }
-
 }
 </style>

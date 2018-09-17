@@ -27,11 +27,11 @@ export default {
 </script>
 
 <style scoped>
-  .minicart-count {
-    top: 7px;
-    left: 50%;
-    min-width: 16px;
-    min-height: 16px;
-    border-radius: 10px;
-  }
+.minicart-count {
+  top: 7px;
+  left: 50%;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 10px;
+}
 </style>

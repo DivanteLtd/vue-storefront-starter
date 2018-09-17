@@ -53,13 +53,13 @@ export default {
     Carousel,
     Slide
   },
-  mounted () {
+  mounted() {
     this.$store.commit('ui/setOverlay', true)
     this.$nextTick(() => {
       this.$refs.carousel.goToPage(this.current)
     })
   },
-  destroyed () {
+  destroyed() {
     this.$store.commit('ui/setOverlay', false)
   }
 }

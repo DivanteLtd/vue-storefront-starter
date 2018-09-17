@@ -59,6 +59,5 @@ $color-secondary: color(secondary);
     color: $color-secondary;
     text-decoration: underline;
   }
-
 }
 </style>

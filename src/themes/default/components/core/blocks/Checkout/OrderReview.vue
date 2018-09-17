@@ -117,13 +117,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .link {
-    text-decoration: underline;
-  }
+.link {
+  text-decoration: underline;
+}
 
-  .cartsummary-wrapper {
-    @media (min-width: 767px) {
-      display: none;
-    }
+.cartsummary-wrapper {
+  @media (min-width: 767px) {
+    display: none;
   }
+}
 </style>

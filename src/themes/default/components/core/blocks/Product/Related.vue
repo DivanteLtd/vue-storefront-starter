@@ -39,7 +39,7 @@ export default {
   components: {
     ProductListing
   },
-  created () {
+  created() {
     this.$bus.$on('product-after-load', this.refreshList)
 
     if (config.usePriceTiers) {
@@ -47,20 +47,20 @@ export default {
       this.$bus.$on('user-after-logout', this.refreshList)
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (config.usePriceTiers) {
       this.$bus.$off('user-after-loggedin', this.refreshList)
       this.$bus.$off('user-after-logout', this.refreshList)
     }
   },
-  destroyed () {
+  destroyed() {
     this.$bus.$off('product-after-load', this.refreshList)
   },
-  beforeMount () {
+  beforeMount() {
     this.refreshList()
   },
   methods: {
-    refreshList () {
+    refreshList() {
       let sku = this.productLinks
         .filter(pl => pl.link_type === this.type)
         .map(pl => pl.linked_product_sku)
@@ -68,38 +68,45 @@ export default {
       let query = builder().query('terms', 'sku', sku)
       if (sku.length === 0) {
         sku = this.product.current.category.map(cat => cat.category_id)
-        query = builder().query('terms', 'category.category_id', sku)
-          .andFilter('range', 'visibility', { 'gte': 2, 'lte': 4 })
-          .andFilter('range', 'visibility', { 'gte': 2, 'lte': 4 })
+        query = builder()
+          .query('terms', 'category.category_id', sku)
+          .andFilter('range', 'visibility', { gte: 2, lte: 4 })
+          .andFilter('range', 'visibility', { gte: 2, lte: 4 })
       }
-      query = query.andFilter('range', 'status', { 'gte': 0, 'lt': 2 }/* 2 = disabled, 4 = out of stock */)
+      query = query.andFilter(
+        'range',
+        'status',
+        { gte: 0, lt: 2 } /* 2 = disabled, 4 = out of stock */
+      )
       if (config.products.listOutOfStockProducts === false) {
         query = query.andFilter('match', 'stock.is_in_stock', true)
       }
 
       query = query.build()
 
-      this.$store.dispatch('product/list', {
-        query,
-        size: 8,
-        prefetchGroupProducts: false,
-        updateState: false
-      }).then((response) => {
-        if (response) {
-          this.$store.dispatch('product/related', {
-            key: this.type,
-            items: response.items
-          })
-          this.$forceUpdate()
-        }
-      })
+      this.$store
+        .dispatch('product/list', {
+          query,
+          size: 8,
+          prefetchGroupProducts: false,
+          updateState: false
+        })
+        .then(response => {
+          if (response) {
+            this.$store.dispatch('product/related', {
+              key: this.type,
+              items: response.items
+            })
+            this.$forceUpdate()
+          }
+        })
     }
   },
   computed: {
-    product () {
+    product() {
       return this.$store.state.product
     },
-    productLinks () {
+    productLinks() {
       return this.product.current.product_links
     }
   }

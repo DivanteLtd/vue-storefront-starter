@@ -123,7 +123,8 @@ table {
     border-top: none;
   }
 
-  th, td {
+  th,
+  td {
     text-align: left;
     padding: 20px;
 
@@ -133,13 +134,11 @@ table {
       @media (max-width: 767px) {
         text-align: left;
       }
-
     }
 
     @media (max-width: 1199px) {
       padding: 10px;
     }
-
   }
 
   thead {
@@ -149,10 +148,9 @@ table {
   }
 
   tbody {
-
     tr {
       @media (max-width: 767px) {
-        display: block
+        display: block;
       }
 
       &:nth-child(even) {
@@ -160,7 +158,6 @@ table {
           background-color: $color-white-smoke;
         }
       }
-
     }
 
     td {
@@ -186,27 +183,24 @@ table {
         }
       }
     }
-
   }
 
   tfoot {
-
     tr {
       @media (max-width: 767px) {
-        display: block
+        display: block;
       }
 
       &:last-child {
         td:last-child {
-         padding-bottom: 20px
+          padding-bottom: 20px;
         }
       }
-
     }
 
     td {
       @media (max-width: 767px) {
-        display: block
+        display: block;
       }
 
       &:first-child {
@@ -221,20 +215,17 @@ table {
           padding: 5px 20px 0 20px;
         }
       }
-
     }
-
   }
 
   i {
     vertical-align: middle;
   }
-
 }
 
 a {
   &:after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     bottom: 0;
@@ -254,5 +245,4 @@ a {
 address {
   font-style: normal;
 }
-
 </style>

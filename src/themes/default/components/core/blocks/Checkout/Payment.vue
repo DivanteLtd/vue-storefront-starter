@@ -333,8 +333,8 @@ export default {
   },
   mixins: [Payment],
   computed: {
-    countryOptions () {
-      return this.countries.map((item) => {
+    countryOptions() {
+      return this.countries.map(item => {
         return {
           value: item.code,
           label: item.name
@@ -342,7 +342,7 @@ export default {
       })
     }
   },
-  validations () {
+  validations() {
     if (!this.generateInvoice) {
       return {
         payment: {

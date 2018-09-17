@@ -77,15 +77,15 @@ export default {
   },
   mixins: [ProductGallery, VueOfflineMixin],
   watch: {
-    '$route': 'validateRoute'
+    $route: 'validateRoute'
   },
-  data () {
+  data() {
     return {
       loaded: true
     }
   },
   methods: {
-    validateRoute () {
+    validateRoute() {
       this.$forceUpdate()
     }
   }
@@ -106,11 +106,11 @@ export default {
       @media (max-width: 767px) {
         position: absolute;
         top: 50%;
-        transform: translate(0,-50%);
-        -webkit-transform: translate(0,-50%);
-        -moz-transform: translate(0,-50%);
-        -ms-transform: translate(0,-50%);
-        -o-transform: translate(0,-50%);
+        transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
+        -moz-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        -o-transform: translate(0, -50%);
       }
     }
   }
@@ -131,10 +131,10 @@ img {
     opacity: 1;
   }
 }
-img[lazy=error] {
+img[lazy='error'] {
   width: 100%;
 }
-img[lazy=loading] {
+img[lazy='loading'] {
   width: 100%;
 }
 
@@ -174,7 +174,7 @@ img[lazy=loading] {
   }
   &:hover {
     .VueCarousel-navigation {
-      opacity: .9;
+      opacity: 0.9;
     }
     .VueCarousel-navigation-button {
       transition: opacity 3s;

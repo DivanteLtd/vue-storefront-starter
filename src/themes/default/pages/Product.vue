@@ -275,19 +275,19 @@ export default {
     SizeSelector
   },
   mixins: [Product],
-  data () {
+  data() {
     return {
       detailsOpen: false
     }
   },
   directives: { focusClean },
   computed: {
-    favoriteIcon () {
+    favoriteIcon() {
       return this.isOnWishlist ? 'favorite' : 'favorite_border'
     }
   },
   methods: {
-    showDetails (event) {
+    showDetails(event) {
       this.detailsOpen = true
       event.target.classList.add('hidden')
     }
@@ -351,7 +351,7 @@ $bg-secondary: color(secondary, $colors-background);
     padding-bottom: 30px;
   }
 
- .sizes {
+  .sizes {
     @media (max-width: 767px) {
       width: 100%;
     }
@@ -465,5 +465,4 @@ $bg-secondary: color(secondary, $colors-background);
   cursor: pointer;
   font-size: 14px;
 }
-
 </style>

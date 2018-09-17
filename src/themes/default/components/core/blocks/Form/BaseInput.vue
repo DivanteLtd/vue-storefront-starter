@@ -61,52 +61,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '~theme/css/variables/colors';
-  @import '~theme/css/helpers/functions/color';
-  $color-tertiary: color(tertiary);
-  $color-black: color(black);
-  $color-puerto-rico: color(puerto-rico);
-  $color-hover: color(tertiary, $colors-background);
+@import '~theme/css/variables/colors';
+@import '~theme/css/helpers/functions/color';
+$color-tertiary: color(tertiary);
+$color-black: color(black);
+$color-puerto-rico: color(puerto-rico);
+$color-hover: color(tertiary, $colors-background);
 
-  input {
-    background: inherit;
+input {
+  background: inherit;
 
-    &:hover,
-    &:focus {
-      outline: none;
-      border-color: $color-puerto-rico;
-    }
-
-    &:disabled,
-    &:disabled + label {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-  }
-  label {
-    color:#999;
-    position:absolute;
-    pointer-events:none;
-    user-select: none;
-    left:5px;
-    top: 10px;
-    transition:0.2s ease all;
-    -moz-transition:0.2s ease all;
-    -webkit-transition:0.2s ease all;
-  }
-  input:focus ~ label, input:not(.empty) ~ label{
-    top: -10px;
-    font-size:14px;
-    color:$color-puerto-rico;
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: $color-puerto-rico;
   }
 
-  .icon {
-    right: 6px;
-    top: 10px;
-    &:hover,
-    &:focus {
-      color: $color-hover;
-    }
+  &:disabled,
+  &:disabled + label {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
   }
+}
+label {
+  color: #999;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+input:focus ~ label,
+input:not(.empty) ~ label {
+  top: -10px;
+  font-size: 14px;
+  color: $color-puerto-rico;
+}
+
+.icon {
+  right: 6px;
+  top: 10px;
+  &:hover,
+  &:focus {
+    color: $color-hover;
+  }
+}
 </style>

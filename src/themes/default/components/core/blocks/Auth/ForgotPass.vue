@@ -77,10 +77,10 @@ export default {
     }
   },
   methods: {
-    close () {
+    close() {
       this.$bus.$emit('modal-hide', 'modal-signup')
     },
-    sendEmail () {
+    sendEmail() {
       // todo: send email with reset password instructions
 
       if (this.$v.$invalid) {
@@ -93,22 +93,30 @@ export default {
         return
       }
 
-      this.$bus.$emit('notification-progress-start', i18n.t('Resetting the password ... '))
-      this.$store.dispatch('user/resetPassword', { email: this.email }).then((response) => {
-        this.$bus.$emit('notification-progress-stop')
-        if (response.code === 200) {
-          this.passwordSent = true
-        } else {
-          this.$bus.$emit('notification', {
-            type: 'error',
-            message: i18n.t(response.result) || i18n.t('Error while sending reset password e-mail'),
-            action1: { label: i18n.t('OK'), action: 'close' }
-          })
-        }
-      }).catch((err) => {
-        console.error(err)
-        this.$bus.$emit('notification-progress-stop')
-      })
+      this.$bus.$emit(
+        'notification-progress-start',
+        i18n.t('Resetting the password ... ')
+      )
+      this.$store
+        .dispatch('user/resetPassword', { email: this.email })
+        .then(response => {
+          this.$bus.$emit('notification-progress-stop')
+          if (response.code === 200) {
+            this.passwordSent = true
+          } else {
+            this.$bus.$emit('notification', {
+              type: 'error',
+              message:
+                i18n.t(response.result) ||
+                i18n.t('Error while sending reset password e-mail'),
+              action1: { label: i18n.t('OK'), action: 'close' }
+            })
+          }
+        })
+        .catch(err => {
+          console.error(err)
+          this.$bus.$emit('notification-progress-stop')
+        })
     }
   },
   mixins: [ForgotPass],
@@ -120,10 +128,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .modal-content {
-    @media (max-width: 400px) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
+.modal-content {
+  @media (max-width: 400px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
+}
 </style>

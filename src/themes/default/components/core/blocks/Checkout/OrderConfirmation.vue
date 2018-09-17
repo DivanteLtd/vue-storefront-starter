@@ -47,7 +47,10 @@
 </template>
 
 <script>
-import { confirmOrder, cancelOrder } from '@vue-storefront/core/modules/offline-order/features'
+import {
+  confirmOrder,
+  cancelOrder
+} from '@vue-storefront/core/modules/offline-order/features'
 
 import Modal from 'theme/components/core/Modal'
 import ButtonFull from 'theme/components/theme/ButtonFull.vue'
@@ -64,7 +67,7 @@ export default {
     Modal,
     ButtonFull
   },
-  mixins: [ confirmOrder, cancelOrder ]
+  mixins: [confirmOrder, cancelOrder]
 }
 </script>
 
@@ -86,7 +89,8 @@ table {
     border-top: none;
   }
 
-  th, td {
+  th,
+  td {
     text-align: left;
     padding: 20px;
 
@@ -110,7 +114,6 @@ table {
   }
 
   tbody {
-
     tr {
       @media (max-width: 767px) {
         display: block;
@@ -151,7 +154,6 @@ table {
   }
 
   tfoot {
-
     tr {
       @media (max-width: 767px) {
         display: block;
@@ -159,7 +161,7 @@ table {
 
       &:last-child {
         td:last-child {
-         padding-bottom: 20px
+          padding-bottom: 20px;
         }
       }
     }

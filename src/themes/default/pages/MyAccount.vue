@@ -42,11 +42,14 @@ import MyOrder from '../components/core/blocks/MyAccount/MyOrder'
 import i18n from '@vue-storefront/i18n'
 
 export default {
-  data () {
+  data() {
     return {
       navigation: [
         { title: i18n.t('My profile'), link: '/my-account' },
-        { title: i18n.t('My shipping details'), link: '/my-account/shipping-details' },
+        {
+          title: i18n.t('My shipping details'),
+          link: '/my-account/shipping-details'
+        },
         { title: i18n.t('My newsletter'), link: '/my-account/newsletter' },
         { title: i18n.t('My orders'), link: '/my-account/orders' },
         { title: i18n.t('My loyalty card'), link: '#' },
@@ -79,7 +82,7 @@ $color-tertiary: color(tertiary);
 
   a {
     &:after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       bottom: 0;

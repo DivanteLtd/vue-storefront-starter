@@ -10,7 +10,7 @@
 import { currentStoreView } from '@vue-storefront/store/lib/multistore'
 
 export default {
-  data () {
+  data() {
     const storeView = currentStoreView()
     return {
       country: storeView.i18n.defaultCountry,
@@ -22,5 +22,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

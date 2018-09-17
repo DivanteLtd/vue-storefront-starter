@@ -28,63 +28,63 @@ export default {
   components: {
     Modal
   },
-  data () {
+  data() {
     return {
       minCountryPerColumn: 3
     }
   },
   computed: {
-    storeViews () {
+    storeViews() {
       return config.storeViews
     },
-    config () {
+    config() {
       return config
     },
-    enableColumns () {
-      var enableStoreViews = Object.keys(config.storeViews).filter((key) => {
+    enableColumns() {
+      var enableStoreViews = Object.keys(config.storeViews).filter(key => {
         var value = config.storeViews[key]
-        return (typeof value === 'object' && value.disabled === false)
+        return typeof value === 'object' && value.disabled === false
       })
       return enableStoreViews.length > this.minCountryPerColumn
     }
   },
   methods: {
-    close () {
+    close() {
       this.$bus.$emit('modal-hide', 'modal-switcher')
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0.5em;
-  }
-  .columns {
-    -moz-column-count: 2;
-    column-count: 2;
-    column-gap: 15px;
-    .country {
-      -webkit-column-break-inside: avoid;
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-  }
+h3 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+.columns {
+  -moz-column-count: 2;
+  column-count: 2;
+  column-gap: 15px;
   .country {
-    margin-bottom: 2em;
-    color: #4f4f4f;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    margin-left: -1em;
-    li {
-      display: inline-block;
-      margin-left: 1em;
-      a {
-        font-size: 0.9em;
-      }
+}
+.country {
+  margin-bottom: 2em;
+  color: #4f4f4f;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-left: -1em;
+  li {
+    display: inline-block;
+    margin-left: 1em;
+    a {
+      font-size: 0.9em;
     }
   }
+}
 </style>

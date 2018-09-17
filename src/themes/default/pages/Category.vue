@@ -59,25 +59,30 @@ export default {
     Sidebar,
     SortBy
   },
-  data () {
+  data() {
     return {
       mobileFilters: false
     }
   },
-  asyncData ({ store, route }) { // this is for SSR purposes to prefetch data - and it's always executed before parent component methods
+  asyncData({ store, route }) {
+    // this is for SSR purposes to prefetch data - and it's always executed before parent component methods
     return new Promise((resolve, reject) => {
-      store.state.category.current_product_query = Object.assign(store.state.category.current_product_query, { // this is just an example how can you modify the search criteria in child components
-        sort: 'updated_at:desc'
-        // searchProductQuery: builder().query('range', 'price', { 'gt': 0 }).andFilter('range', 'visibility', { 'gte': 2, 'lte': 4 }) // this is an example on how to modify the ES query, please take a look at the @vue-storefront/core/helpers for refernce on how to build valid query
-      })
+      store.state.category.current_product_query = Object.assign(
+        store.state.category.current_product_query,
+        {
+          // this is just an example how can you modify the search criteria in child components
+          sort: 'updated_at:desc'
+          // searchProductQuery: builder().query('range', 'price', { 'gt': 0 }).andFilter('range', 'visibility', { 'gte': 2, 'lte': 4 }) // this is an example on how to modify the ES query, please take a look at the @vue-storefront/core/helpers for refernce on how to build valid query
+        }
+      )
       resolve()
     })
   },
   methods: {
-    openFilters () {
+    openFilters() {
       this.mobileFilters = true
     },
-    closeFilters () {
+    closeFilters() {
       this.mobileFilters = false
     }
   },
@@ -86,92 +91,92 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .category-filters {
-    width: 242px;
+.category-filters {
+  width: 242px;
+}
+
+.mobile-filters {
+  display: none;
+  overflow: auto;
+}
+
+.mobile-filters-button {
+  display: none;
+}
+
+.mobile-sorting {
+  display: none;
+}
+
+.category-title {
+  line-height: 65px;
+}
+
+@media (max-width: 64em) {
+  .products-list {
+    max-width: 530px;
+  }
+}
+
+@media (max-width: 770px) {
+  .category-title {
+    margin: 0;
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .products-list {
+    width: 100%;
+    max-width: none;
   }
 
   .mobile-filters {
-    display: none;
-    overflow: auto;
+    display: block;
   }
 
   .mobile-filters-button {
+    display: block;
+    height: 45px;
+  }
+
+  .sorting {
     display: none;
   }
 
   .mobile-sorting {
+    display: block;
+  }
+
+  .category-filters {
     display: none;
   }
 
-  .category-title {
-    line-height: 65px;
+  .product-listing {
+    justify-content: center;
   }
 
-  @media (max-width: 64em) {
-    .products-list {
-      max-width: 530px;
-    }
-  }
-
-  @media (max-width: 770px) {
-    .category-title {
-      margin: 0;
-      font-size: 36px;
-      line-height: 40px;
-    }
-
-    .products-list {
-      width: 100%;
-      max-width: none;
-    }
-
-    .mobile-filters {
-      display: block;
-    }
-
-    .mobile-filters-button {
-      display: block;
-      height: 45px;
-    }
-
-    .sorting {
-      display: none;
-    }
-
-    .mobile-sorting {
-      display: block;
-    }
-
-    .category-filters {
-      display: none;
-    }
-
-    .product-listing {
-      justify-content: center;;
-    }
-
-    .mobile-filters {
-      position: fixed;
-      background-color: #F2F2F2;
-      z-index: 5;
-      padding: 0 40px;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      top: 0;
-      box-sizing: border-box;
-    }
-
-    .mobile-filters-body {
-      padding-top: 50px;
-    }
-  }
-
-  .close-container {
+  .mobile-filters {
+    position: fixed;
+    background-color: #f2f2f2;
+    z-index: 5;
+    padding: 0 40px;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    box-sizing: border-box;
   }
 
-  .close {
-    margin-left: auto;
+  .mobile-filters-body {
+    padding-top: 50px;
   }
+}
+
+.close-container {
+  left: 0;
+}
+
+.close {
+  margin-left: auto;
+}
 </style>

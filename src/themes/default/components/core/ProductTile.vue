@@ -71,11 +71,18 @@ export default {
     }
   },
   methods: {
-    visibilityChanged (isVisible, entry) {
+    visibilityChanged(isVisible, entry) {
       if (isVisible) {
-        if (config.products.configurableChildrenStockPrefetchDynamic && config.products.filterUnavailableVariants) {
+        if (
+          config.products.configurableChildrenStockPrefetchDynamic &&
+          config.products.filterUnavailableVariants
+        ) {
           const skus = [this.product.sku]
-          if (this.product.type_id === 'configurable' && this.product.configurable_children && this.product.configurable_children.length > 0) {
+          if (
+            this.product.type_id === 'configurable' &&
+            this.product.configurable_children &&
+            this.product.configurable_children.length > 0
+          ) {
             for (const confChild of this.product.configurable_children) {
               const cachedItem = rootStore.state.stock.cache[confChild.id]
               if (typeof cachedItem === 'undefined' || cachedItem === null) {
@@ -90,8 +97,8 @@ export default {
       }
     }
   },
-  created () {
-    this.$bus.$on('product-after-priceupdate', (product) => {
+  created() {
+    this.$bus.$on('product-after-priceupdate', product => {
       if (product.sku === this.product.sku) {
         Object.assign(this.product, product)
       }
@@ -162,7 +169,7 @@ $color-white: color(white);
     transform: scale(1);
     transition: 0.3s opacity $motion-main, 0.3s transform $motion-main;
 
-    &[lazy="loaded"] {
+    &[lazy='loaded'] {
       animation: products-loaded;
       animation-duration: 0.3s;
     }

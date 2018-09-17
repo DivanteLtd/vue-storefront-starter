@@ -78,9 +78,9 @@ $color-action: color(black);
   }
 }
 .notification {
-  box-shadow: 0px 0px 35px -5px rgba($color-action, .7);
+  box-shadow: 0px 0px 35px -5px rgba($color-action, 0.7);
 
-  &:first-child  {
+  &:first-child {
     margin-top: 0;
   }
 }
@@ -90,7 +90,7 @@ $color-action: color(black);
   justify-content: space-between;
 
   .notification-action {
-    background: rgba($color-action, .2);
+    background: rgba($color-action, 0.2);
   }
 
   #notificationAction2 {
