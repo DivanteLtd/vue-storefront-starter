@@ -70,7 +70,7 @@ export default {
       href: '/assets/apple_splash_640.png',
       sizes: '640x1136'
     },
-    { rel: 'manifest', href: '/assets/manifest.json' },
+    { rel: 'manifest', href: '/manifest.json' },
     {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
