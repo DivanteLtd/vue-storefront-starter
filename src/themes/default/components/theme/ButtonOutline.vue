@@ -37,31 +37,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-$dark-border: color(secondary);
-$white: color(white);
-$black: color(black);
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
+  $dark-border: color(secondary);
+  $white: color(white);
+  $black: color(black);
 
-.button-outline {
-  border: 2px solid;
-  min-width: 250px;
-}
-.dark {
-  border: 1px solid $dark-border;
-  &:hover,
-  &:focus {
-    color: $white;
-    background: $black;
-    border-color: $black;
+  .button-outline {
+    border: 2px solid;
+    min-width: 250px;
   }
-}
-.light {
-  &:hover,
-  &:focus {
-    color: $black;
-    background: $white;
-    border-color: $white;
+  .dark {
+    border: 1px solid $dark-border;
+    &:hover,
+    &:focus {
+      color: $white;
+      background: $black;
+      border-color: $black;
+    }
   }
-}
+  .light {
+    &:hover,
+    &:focus {
+      color: $black;
+      background: $white;
+      border-color: $white;
+    }
+  }
 </style>

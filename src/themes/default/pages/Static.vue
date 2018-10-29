@@ -36,12 +36,10 @@ export default {
     Breadcrumbs,
     StaticContent
   },
-  metaInfo() {
+  metaInfo () {
     return {
       title: this.$route.meta.title || this.$props.title,
-      meta: this.$route.meta.description
-        ? [{ vmid: 'description', description: this.$route.meta.description }]
-        : []
+      meta: this.$route.meta.description ? [{vmid: 'description', description: this.$route.meta.description}] : []
     }
   },
   props: {
@@ -54,7 +52,7 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       navigation: [
         { title: i18n.t('About us'), link: '/about-us' },
@@ -81,7 +79,7 @@ $border-primary: color(primary, $colors-border);
   }
 
   a::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;

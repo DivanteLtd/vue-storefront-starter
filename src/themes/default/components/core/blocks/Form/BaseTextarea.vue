@@ -3,7 +3,7 @@
     <div class="relative">
       <textarea
         class="
-          py10 w-100 border-box brdr-none brdr-bottom
+          mt10 pb10 w-100 border-box brdr-none brdr-bottom-1
           brdr-cl-primary h4 sans-serif
         "
         :class="{empty: value === ''}"
@@ -25,7 +25,7 @@
 
     <template v-if="validation">
       <span
-        class="block cl-error h6"
+        class="block cl-error h6 mt5"
         v-if="validation.condition"
       >
         {{ validation.text }}
@@ -37,7 +37,7 @@
         v-for="(validation, index) in validations"
         :key="index"
         v-if="validation.condition"
-        class="block cl-error h6"
+        class="block cl-error h6 mt5"
       >
         {{ validation.text }}
       </span>
@@ -54,46 +54,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
 
-$color-tertiary: color(tertiary);
-$color-black: color(black);
-$color-puerto-rico: color(puerto-rico);
-$color-hover: color(tertiary, $colors-background);
+  $color-tertiary: color(tertiary);
+  $color-black: color(black);
+  $color-puerto-rico: color(puerto-rico);
+  $color-hover: color(tertiary, $colors-background);
 
-textarea {
-  &:hover,
-  &:focus {
-    outline: none;
-    border-color: $color-puerto-rico;
+  textarea {
+    &:hover,
+    &:focus {
+      outline: none;
+      border-color: $color-puerto-rico;
+    }
+    resize: none;
+    background: inherit;
+    min-height: 100px;
   }
-  resize: none;
-  background: inherit;
-}
 
-label {
-  color: #999;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: 0.2s ease all;
-}
-
-textarea:focus ~ label,
-textarea:not(.empty) ~ label {
-  top: -10px;
-  font-size: 14px;
-  color: $color-puerto-rico;
-}
-
-.icon {
-  right: 6px;
-  top: 10px;
-  &:hover,
-  &:focus {
-    color: $color-hover;
+  label {
+    color: #999;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 10px;
+    transition: 0.2s ease all;
   }
-}
+
+  textarea:focus ~ label,
+  textarea:not(.empty) ~ label {
+    top: -10px;
+    font-size: 14px;
+    color: $color-puerto-rico;
+  }
+
+  .icon {
+    right: 6px;
+    top: 10px;
+    &:hover,
+    &:focus {
+      color: $color-hover;
+    }
+  }
 </style>

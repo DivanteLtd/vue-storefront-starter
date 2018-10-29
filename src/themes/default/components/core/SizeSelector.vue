@@ -21,35 +21,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-$color-active: color(secondary);
-$color-disabled: color(secondary, $colors-border);
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
+  $color-active: color(secondary);
+  $color-disabled: color(secondary, $colors-border);
 
-.size-selector {
-  width: 40px;
-  height: 40px;
-
-  &:hover,
-  &:focus {
-    border-width: 2px;
-  }
-
-  &.active {
-    border-color: $color-active;
-    border-width: 2px;
-    color: $color-active;
-  }
-
-  &:disabled {
-    border-color: $color-disabled;
-    color: $color-disabled;
-    cursor: not-allowed;
+  .size-selector {
+    width: 40px;
+    height: 40px;
 
     &:hover,
-    &:after {
-      border-width: 1px;
+    &:focus {
+      border-width: 2px;
+    }
+
+    &.active {
+      border-color: $color-active;
+      border-width: 2px;
+      color: $color-active;
+    }
+
+    &:disabled {
+      border-color: $color-disabled;
+      color: $color-disabled;
+      cursor: not-allowed;
+
+      &:hover,
+      &:after {
+        border-width: 1px;
+      }
     }
   }
-}
 </style>

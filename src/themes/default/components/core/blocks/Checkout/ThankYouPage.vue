@@ -19,7 +19,7 @@
               {{ $t('Your purchase') }}
             </h3>
             <p v-if="OnlineOnly" v-html="this.$t('You have successfuly placed the order. You can check status of your order by using our <b>delivery status</b> feature. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')" />
-            <p v-if="OnlineOnly" v-html="this.$t('E-mail us at <b>demo@vuestorefront.io</b> with any questions, seuggestions how we could improve products or shopping experience')"/>
+            <p v-if="OnlineOnly" v-html="this.$t('E-mail us at <b>demo@vuestorefront.io</b> with any questions, suggestions how we could improve products or shopping experience')"/>
 
             <h4 v-if="OfflineOnly">
               {{ $t('You are offline') }}
@@ -28,7 +28,7 @@
               {{ $t('To finish the order just come back to our store while online. Your order will be sent to the server as soon as you come back here while online and then confirmed regarding the stock quantities of selected items') }}
             </p>
             <p v-if="OfflineOnly && isNotificationSupported && !isPermissionGranted" >
-              {{ $t('You can allow us to remind you about the order via push notification after coming back online. You\'ll only need to click on it to confirm.') }}
+              {{ $t("You can allow us to remind you about the order via push notification after coming back online. You'll only need to click on it to confirm.") }}
             </p>
             <p v-if="OfflineOnly && isNotificationSupported && isPermissionGranted" >
               <strong>{{ $t('You will receive Push notification after coming back online. You can confirm the order by clicking on it') }}</strong>
@@ -42,7 +42,7 @@
             <h4>
               {{ $t('Your Account') }}
             </h4>
-            <p v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit you\'r profile data,</b> check <b>history of transactions,</b> edit <b>subscription to newsletter.</b>')"/>
+            <p v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit your profile data,</b> check <b>history of transactions,</b> edit <b>subscription to newsletter.</b>')"/>
           </div>
           <div class="col-md-6 bg-cl-secondary thank-you-improvment">
             <h3>
@@ -51,7 +51,7 @@
             <p class="mb25">
               {{ $t('Your feedback is important fo us. Let us know what we could improve.') }}
             </p>
-            <form action="mailto:contributors@vuestorefront.io">
+            <form @submit.prevent="sendFeedback">
               <base-textarea
                 class="mb25"
                 type="text"
@@ -78,34 +78,72 @@ import Breadcrumbs from 'theme/components/core/Breadcrumbs'
 import BaseTextarea from 'theme/components/core/blocks/Form/BaseTextarea'
 import ButtonOutline from 'theme/components/theme/ButtonOutline'
 import VueOfflineMixin from 'vue-offline/mixin'
+import { EmailForm } from '@vue-storefront/core/modules/mailer/components/EmailForm'
 
 export default {
   name: 'ThankYouPage',
-  mixins: [Composite, VueOfflineMixin],
-  data() {
+  mixins: [Composite, VueOfflineMixin, EmailForm],
+  data () {
     return {
       feedback: ''
     }
   },
   computed: {
-    isNotificationSupported() {
+    isNotificationSupported () {
       if (Vue.prototype.$isServer || !('Notification' in window)) return false
       return 'Notification' in window
     },
-    isPermissionGranted() {
+    isPermissionGranted () {
       if (Vue.prototype.$isServer || !('Notification' in window)) return false
       return Notification.permission === 'granted'
     }
   },
   methods: {
-    requestNotificationPermission() {
+    requestNotificationPermission () {
       if (Vue.prototype.$isServer) return false
       if ('Notification' in window && Notification.permission !== 'granted') {
         Notification.requestPermission()
       }
+    },
+    sendFeedback () {
+      this.sendEmail(
+        {
+          sourceAddress: this.$store.state.checkout.personalDetails.emailAddress,
+          targetAddress: this.$store.state.config.mailer.contactAddress,
+          subject: this.$t('What we can improve?'),
+          emailText: this.feedback
+        },
+        this.onSuccess,
+        this.onFailure
+      )
+    },
+    onSuccess (message) {
+      this.$store.dispatch('notification/spawnNotification', {
+        type: 'success',
+        message,
+        action1: { label: this.$t('OK') }
+      })
+      if (this.$store.state.config.mailer.sendConfirmation) {
+        this.sendEmail(
+          {
+            sourceAddress: this.$store.state.config.mailer.contactAddress,
+            targetAddress: this.$store.state.checkout.personalDetails.emailAddress,
+            subject: this.$t('Confirmation of receival'),
+            emailText: this.$t(`Dear customer,\n\nWe have received your letter.\nThank you for your feedback!`),
+            confirmation: true
+          }
+        )
+      }
+    },
+    onFailure (message) {
+      this.$store.dispatch('notification/spawnNotification', {
+        type: 'error',
+        message,
+        action1: { label: this.$t('OK') }
+      })
     }
   },
-  destroyed() {
+  destroyed () {
     this.$store.dispatch('checkout/setThankYouPage', false)
   },
   components: {
@@ -117,28 +155,28 @@ export default {
 </script>
 
 <style lang="scss">
-.thank-you-content {
-  padding-left: 0;
+  .thank-you-content {
+    padding-left: 0;
 
-  p {
-    line-height: 25px;
-  }
+    p {
+      line-height: 25px
+    }
 
-  @media (min-width: 64em) {
-    h4 {
-      font-size: 24px;
+    @media (min-width: 64em) {
+      h4 {
+        font-size: 24px;
+      }
     }
   }
-}
-.thank-you-improvment {
-  padding: 0 20px 15px;
+  .thank-you-improvment {
+    padding: 0 20px 15px;
 
-  @media (min-width: 64em) {
-    padding: 0 40px 10px;
-  }
+    @media (min-width: 64em) {
+      padding: 0 40px 10px;
+    }
 
-  textarea {
-    min-height: 100px;
+    textarea {
+      min-height: 100px;
+    }
   }
-}
 </style>

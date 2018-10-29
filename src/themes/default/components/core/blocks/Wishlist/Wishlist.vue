@@ -29,6 +29,13 @@ import Wishlist from '@vue-storefront/core/components/blocks/Wishlist/Wishlist'
 import Product from 'theme/components/core/blocks/Wishlist/Product'
 
 export default {
+  props: {
+    product: {
+      type: Object,
+      required: false,
+      default: () => { }
+    }
+  },
   components: {
     Product
   },
@@ -37,26 +44,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/animations/transitions';
-.wishlist {
-  height: 100vh;
-  width: 800px;
-  top: 0;
-  right: 0;
-  z-index: 3;
-  transform: translateX(100%);
-  transition: transform 300ms $motion-main;
-  overflow-y: auto;
-  overflow-x: hidden;
+@import "~theme/css/animations/transitions";
+  .wishlist {
+    height: 100vh;
+    width: 800px;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    transform: translateX(100%);
+    transition: transform 300ms $motion-main;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-  &.active {
-    transform: translateX(0);
+    &.active {
+      transform: translateX(0)
+    }
   }
-}
-i {
-  opacity: 0.6;
-  &:hover {
-    opacity: 1;
+  i {
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
   }
-}
 </style>

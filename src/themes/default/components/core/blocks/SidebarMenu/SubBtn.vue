@@ -45,13 +45,13 @@ export default {
     })
   },
   methods: {
-    next() {
+    next () {
       this.$store.commit('ui/setSubmenu', {
         id: this.id,
         depth: ++this.submenu.depth
       })
     },
-    back() {
+    back () {
       this.$store.commit('ui/setSubmenu', {
         depth: --this.submenu.depth
       })

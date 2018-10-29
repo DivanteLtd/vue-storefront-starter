@@ -6,7 +6,7 @@ export default {
   components: {
     static: null
   },
-  data() {
+  data () {
     return {
       staticLoaded: false
     }
@@ -18,19 +18,17 @@ export default {
     }
   },
   watch: {
-    file: function(newFile) {
+    file: function (newFile) {
       this.loadContent(newFile)
     }
   },
-  mounted() {
+  mounted () {
     this.loadContent()
   },
   methods: {
-    loadContent(file = this.file) {
+    loadContent (file = this.file) {
       this.staticLoaded = false
-      this.$options.components.static = require('../../resource/' +
-        file +
-        '.md').default
+      this.$options.components.static = require('../../resource/' + file + '.md').default
       this.staticLoaded = 'static'
     }
   }

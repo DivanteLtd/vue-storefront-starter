@@ -130,7 +130,7 @@ export default {
     SubBtn
   },
   mixins: [SidebarMenu],
-  data() {
+  data () {
     return {
       myAccountLinks: [
         {
@@ -167,10 +167,8 @@ export default {
     }
   },
   computed: {
-    mainListStyles() {
-      return this.submenu.depth
-        ? `transform: translateX(${this.submenu.depth * 100}%)`
-        : false
+    mainListStyles () {
+      return this.submenu.depth ? `transform: translateX(${this.submenu.depth * 100}%)` : false
     },
     ...mapState({
       submenu: state => state.ui.submenu,
@@ -181,7 +179,7 @@ export default {
     })
   },
   methods: {
-    login() {
+    login () {
       this.$bus.$emit('modal-show', 'modal-signup')
       this.$store.commit('ui/setOpenMyAccount', true)
     }
@@ -190,7 +188,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~theme/css/animations/transitions';
+@import "~theme/css/animations/transitions";
 @import '~theme/css/variables/colors';
 @import '~theme/css/helpers/functions/color';
 $bg-secondary: color(secondary, $colors-background);
@@ -242,8 +240,7 @@ $color-mine-shaft: color(mine-shaft);
   }
 
   button {
-    color: $color-mine-shaft;
-    a {
+    color: $color-mine-shaft;a {
       color: $color-mine-shaft;
     }
   }
@@ -259,5 +256,6 @@ $color-mine-shaft: color(mine-shaft);
       }
     }
   }
+
 }
 </style>

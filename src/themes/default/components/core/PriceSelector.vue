@@ -20,33 +20,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-$color-event: color(tertiary);
-$color-active: color(accent);
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
+  $color-event: color(tertiary);
+  $color-active: color(accent);
 
-.price-selector {
-  width: 20px;
-  height: 20px;
+  .price-selector {
+    width: 20px;
+    height: 20px;
 
-  &:hover {
-    .square {
-      background-color: $color-event;
+    &:hover {
+      .square {
+        background-color: $color-event;
+      }
+    }
+
+    &.active {
+      .square {
+        background-color: $color-active;
+      }
     }
   }
 
-  &.active {
-    .square {
-      background-color: $color-active;
-    }
+  .square {
+    width: 80%;
+    height: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
   }
-}
-
-.square {
-  width: 80%;
-  height: 80%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 </style>

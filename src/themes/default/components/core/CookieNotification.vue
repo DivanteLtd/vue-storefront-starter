@@ -40,42 +40,32 @@ export default {
     },
     message: {
       type: String,
-      default: i18n.t(
-        'We use cookies to give you the best shopping experience.'
-      )
+      default: i18n.t('We use cookies to give you the best shopping experience.')
     }
   },
-  data() {
+  data () {
     return {
       isOpen: false
     }
   },
   methods: {
-    accept() {
+    accept () {
       this.setVisited()
       this.isOpen = false
     },
-    setVisited() {
-      this.$store.dispatch('claims/set', {
-        claimCode: 'cookiesAccepted',
-        value: true
-      })
+    setVisited () {
+      this.$store.dispatch('claims/set', {claimCode: 'cookiesAccepted', value: true})
     }
   },
-  created() {
-    this.$store
-      .dispatch('claims/check', { claimCode: 'cookiesAccepted' })
-      .then(cookieClaim => {
-        if (!cookieClaim) {
-          this.isOpen = true
-          this.$store.dispatch('claims/set', {
-            claimCode: 'cookiesAccepted',
-            value: false
-          })
-        } else {
-          this.isOpen = !cookieClaim.value
-        }
-      })
+  created () {
+    this.$store.dispatch('claims/check', {claimCode: 'cookiesAccepted'}).then((cookieClaim) => {
+      if (!cookieClaim) {
+        this.isOpen = true
+        this.$store.dispatch('claims/set', {claimCode: 'cookiesAccepted', value: false})
+      } else {
+        this.isOpen = !cookieClaim.value
+      }
+    })
   }
 }
 </script>

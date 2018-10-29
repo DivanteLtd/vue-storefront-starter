@@ -45,7 +45,7 @@ export default {
     'no-ssr': NoSSR
   },
   mixins: [MainSlider],
-  created() {
+  created () {
     this.updateSliderData(sliderData)
   }
 }
@@ -55,6 +55,7 @@ export default {
 @import '~theme/css/helpers/functions/color';
 $color-white: color(white);
 .main-slider {
+
   @media (max-width: 767px) {
     display: none;
   }

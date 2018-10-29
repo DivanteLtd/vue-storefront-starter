@@ -264,7 +264,7 @@
             <button-full
               @click.native="sendDataToCheckout"
               data-testid="paymentSubmit"
-              :class="{ 'button-disabled' : $v.payment.$invalid }"
+              :disabled="$v.payment.$invalid"
             >
               {{ $t('Go review the order') }}
             </button-full>
@@ -333,8 +333,8 @@ export default {
   },
   mixins: [Payment],
   computed: {
-    countryOptions() {
-      return this.countries.map(item => {
+    countryOptions () {
+      return this.countries.map((item) => {
         return {
           value: item.code,
           label: item.name
@@ -342,7 +342,7 @@ export default {
       })
     }
   },
-  validations() {
+  validations () {
     if (!this.generateInvoice) {
       return {
         payment: {

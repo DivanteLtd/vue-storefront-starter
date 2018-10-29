@@ -22,11 +22,22 @@
 </template>
 
 <script>
-import Newsletter from '@vue-storefront/core/components/blocks/Footer/Newsletter'
 import ButtonOutline from 'theme/components/theme/ButtonOutline'
+import { mapState } from 'vuex'
 
 export default {
-  mixins: [Newsletter],
+  name: 'Newsletter',
+  computed: {
+    ...mapState({
+      isOpen: state => state.ui.newsletterPopup,
+      isSubscribed: state => state.mailchimp.isSubscribed
+    })
+  },
+  methods: {
+    newsletterClick () {
+      this.$store.commit('ui/setNewsletterPopup', !this.isOpen)
+    }
+  },
   components: {
     ButtonOutline
   }
@@ -34,17 +45,17 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 1023px) {
-  .newsletter-button {
-    padding-top: 25px;
-    text-align: center;
+  @media (max-width: 1023px) {
+    .newsletter-button {
+      padding-top: 25px;
+      text-align: center;
+    }
   }
-}
 
-@media (max-width: 767px) {
-  .h3 {
-    font-size: 18px;
-    text-align: center;
+  @media (max-width: 767px) {
+    .h3 {
+      font-size: 18px;
+      text-align: center;
+    }
   }
-}
 </style>

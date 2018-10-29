@@ -72,8 +72,7 @@ table {
   border-collapse: collapse;
   width: 100%;
 
-  th,
-  td {
+  th, td {
     text-align: left;
     padding: 20px;
 
@@ -86,15 +85,19 @@ table {
     }
 
     &.hide-on-xs {
+
       @media (max-width: 767px) {
         display: none;
       }
+
     }
+
   }
 
   i {
     vertical-align: middle;
   }
+
 }
 
 .dropdown {
@@ -114,21 +117,24 @@ table {
     top: 100%;
     width: 160px;
     z-index: 1;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
 
   a {
-    opacity: 0.6;
+    opacity: .6;
 
     &:hover,
     &:focus {
       background-color: $color-icon-hover;
       opacity: 1;
     }
+
   }
 
   &:hover .dropdown-content {
     display: block;
   }
+
 }
+
 </style>

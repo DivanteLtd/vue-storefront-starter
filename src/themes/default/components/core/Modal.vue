@@ -52,7 +52,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return this.width ? `width: ${this.width}px` : false
     }
   }
@@ -91,7 +91,7 @@ $z-index-modal: map-get($z-index, modal);
     margin: 0 auto;
     max-width: 100%;
     max-height: 100%;
-    z-index: $z-index-modal + 1;
+    z-index: $z-index-modal+1;
     pointer-events: auto;
 
     @media (max-width: 600px) {
@@ -105,7 +105,7 @@ $z-index-modal: map-get($z-index, modal);
     position: relative;
 
     > * {
-      margin: 0;
+        margin: 0;
     }
 
     @media (max-width: 600px) {

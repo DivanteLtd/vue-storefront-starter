@@ -12,18 +12,18 @@ const state = {
 }
 
 const mutations = {
-  setCheckoutMode(state, action) {
+  setCheckoutMode (state, action) {
     state.checkoutMode = action === true
   },
-  setMicrocart(state, action) {
+  setMicrocart (state, action) {
     state.microcart = action === true
     state.overlay = action === true
   },
-  setSidebar(state, action) {
+  setSidebar (state, action) {
     state.sidebar = action === true
     state.overlay = action === true
   },
-  setSubmenu(state, { id, depth }) {
+  setSubmenu (state, { id, depth }) {
     if (id) {
       state.submenu.path.push(id)
     } else if (state.submenu.path.length) {
@@ -33,17 +33,27 @@ const mutations = {
     }
     state.submenu.depth = state.submenu.depth > 0 && depth
   },
-  setSearchpanel(state, action) {
+  setSearchpanel (state, action) {
     state.searchpanel = action === true
     state.overlay = action === true
   },
-  setWishlist(state, action) {
+  setWishlist (state, action) {
     state.wishlist = action === true
     state.overlay = action === true
   }
 }
 
+const actions = {
+  toggleMicrocart ({ commit, state }) {
+    commit('setMicrocart', !state.microcart)
+  },
+  toggleWishlist ({ commit, state }) {
+    commit('setWishlist', !state.microcart)
+  }
+}
+
 export default extendStore(coreStore, {
   state,
+  actions,
   mutations
 })

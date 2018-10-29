@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import config from 'config'
 import rootStore from '@vue-storefront/store'
 import ProductTile from '@vue-storefront/core/components/ProductTile'
 
@@ -71,18 +70,16 @@ export default {
     }
   },
   methods: {
-    visibilityChanged(isVisible, entry) {
+    onProductPriceUpdate (product) {
+      if (product.sku === this.product.sku) {
+        Object.assign(this.product, product)
+      }
+    },
+    visibilityChanged (isVisible, entry) {
       if (isVisible) {
-        if (
-          config.products.configurableChildrenStockPrefetchDynamic &&
-          config.products.filterUnavailableVariants
-        ) {
+        if (rootStore.state.config.products.configurableChildrenStockPrefetchDynamic && rootStore.products.filterUnavailableVariants) {
           const skus = [this.product.sku]
-          if (
-            this.product.type_id === 'configurable' &&
-            this.product.configurable_children &&
-            this.product.configurable_children.length > 0
-          ) {
+          if (this.product.type_id === 'configurable' && this.product.configurable_children && this.product.configurable_children.length > 0) {
             for (const confChild of this.product.configurable_children) {
               const cachedItem = rootStore.state.stock.cache[confChild.id]
               if (typeof cachedItem === 'undefined' || cachedItem === null) {
@@ -97,12 +94,11 @@ export default {
       }
     }
   },
-  created() {
-    this.$bus.$on('product-after-priceupdate', product => {
-      if (product.sku === this.product.sku) {
-        Object.assign(this.product, product)
-      }
-    })
+  beforeMount () {
+    this.$bus.$on('product-after-priceupdate', this.onProductPriceUpdate)
+  },
+  beforeDestroy () {
+    this.$bus.$off('product-after-priceupdate', this.onProductPriceUpdate)
   }
 }
 </script>
@@ -169,7 +165,7 @@ $color-white: color(white);
     transform: scale(1);
     transition: 0.3s opacity $motion-main, 0.3s transform $motion-main;
 
-    &[lazy='loaded'] {
+    &[lazy="loaded"] {
       animation: products-loaded;
       animation-duration: 0.3s;
     }

@@ -40,71 +40,71 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-$color-silver: color(silver);
-$color-active: color(secondary);
-$color-white: color(white);
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
+  $color-silver: color(silver);
+  $color-active: color(secondary);
+  $color-white: color(white);
 
-label {
-  user-select: none;
-  &:before {
-    content: '';
+  label {
+    user-select: none;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0;
+      width: 22px;
+      height: 22px;
+      background-color: $color-white;
+      border: 1px solid $color-silver;
+      cursor: pointer;
+    }
+  }
+
+  input {
     position: absolute;
     top: 3px;
     left: 0;
-    width: 22px;
-    height: 22px;
-    background-color: $color-white;
-    border: 1px solid $color-silver;
-    cursor: pointer;
-  }
-}
-
-input {
-  position: absolute;
-  top: 3px;
-  left: 0;
-  opacity: 0;
-  &:checked + label {
-    &:before {
-      background-color: $color-silver;
-      border-color: $color-silver;
-      cursor: pointer;
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      top: 9px;
-      left: 5px;
-      width: 11px;
-      height: 5px;
-      border: 3px solid $color-white;
-      border-top: none;
-      border-right: none;
-      background-color: $color-silver;
-      transform: rotate(-45deg);
-    }
-  }
-  &:hover,
-  &:focus {
-    + label {
+    opacity: 0;
+    &:checked + label {
       &:before {
-        border-color: $color-active;
+        background-color: $color-silver;
+        border-color: $color-silver;
+        cursor: pointer;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 9px;
+        left: 5px;
+        width: 11px;
+        height: 5px;
+        border: 3px solid $color-white;
+        border-top: none;
+        border-right: none;
+        background-color: $color-silver;
+        transform: rotate(-45deg);
       }
     }
-  }
-  &:disabled + label {
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none;
     &:hover,
     &:focus {
-      &:before {
-        border-color: $color-silver;
-        cursor: not-allowed;
+      + label {
+        &:before {
+          border-color: $color-active;
+        }
+      }
+    }
+    &:disabled + label {
+      cursor: not-allowed;
+      opacity: 0.5;
+      pointer-events: none;
+      &:hover,
+      &:focus {
+        &:before {
+          border-color: $color-silver;
+          cursor: not-allowed;
+        }
       }
     }
   }
-}
 </style>

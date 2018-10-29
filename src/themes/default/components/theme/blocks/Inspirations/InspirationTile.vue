@@ -20,7 +20,7 @@ export default {
     }
   },
   computed: {
-    thumbnail() {
+    thumbnail () {
       return this.getThumbnail(this.product.image, 310, 300)
     }
   }
@@ -28,11 +28,11 @@ export default {
 </script>
 
 <style scoped>
-.inspiration-tile {
-  height: 350px;
-}
+  .inspiration-tile {
+    height: 350px;
+  }
 
-.product-thumbnail {
-  mix-blend-mode: multiply;
-}
+  .product-thumbnail {
+    mix-blend-mode: multiply;
+  }
 </style>

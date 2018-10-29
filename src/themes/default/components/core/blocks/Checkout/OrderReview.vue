@@ -68,7 +68,7 @@
                 @click.native="placeOrder"
                 data-testid="orderReviewSubmit"
                 class="place-order-btn"
-                :class="{ 'button-disabled' : $v.orderReview.$invalid }"
+                :disabled="$v.orderReview.$invalid"
               >
                 {{ $t('Place the order') }}
               </button-full>
@@ -112,18 +112,34 @@ export default {
         required
       }
     }
+  },
+  methods: {
+    onSuccess () {
+      this.$store.dispatch('notification/spawnNotification', {
+        type: 'success',
+        message: this.$t('You are logged in!'),
+        action1: { label: this.$t('OK') }
+      })
+    },
+    onFailure (result) {
+      this.$store.dispatch('notification/spawnNotification', {
+        type: 'error',
+        message: this.$t(result.result),
+        action1: { label: this.$t('OK') }
+      })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.link {
-  text-decoration: underline;
-}
-
-.cartsummary-wrapper {
-  @media (min-width: 767px) {
-    display: none;
+  .link {
+    text-decoration: underline;
   }
-}
+
+  .cartsummary-wrapper {
+    @media (min-width: 767px) {
+      display: none;
+    }
+  }
 </style>

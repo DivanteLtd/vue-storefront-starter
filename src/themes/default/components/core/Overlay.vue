@@ -7,14 +7,14 @@ import Overlay from '@vue-storefront/core/components/Overlay'
 
 export default {
   mixins: [Overlay],
-  beforeCreate() {
+  beforeCreate () {
     document.documentElement.classList.add('no-scroll')
   },
-  destroyed() {
+  destroyed () {
     document.documentElement.classList.remove('no-scroll')
   },
   methods: {
-    close() {
+    close () {
       this.$store.commit('ui/setOverlay', false)
       this.$store.commit('ui/setMicrocart', false)
       this.$store.commit('ui/setWishlist', false)

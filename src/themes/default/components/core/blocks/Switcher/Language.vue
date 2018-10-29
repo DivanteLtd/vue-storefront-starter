@@ -23,68 +23,68 @@
 </template>
 <script>
 import Modal from 'theme/components/core/Modal.vue'
-import config from 'config'
+import store from '@vue-storefront/store'
 export default {
   components: {
     Modal
   },
-  data() {
+  data () {
     return {
       minCountryPerColumn: 3
     }
   },
   computed: {
-    storeViews() {
-      return config.storeViews
+    storeViews () {
+      return store.state.config.storeViews
     },
-    config() {
-      return config
+    config () {
+      return store.state.config
     },
-    enableColumns() {
-      var enableStoreViews = Object.keys(config.storeViews).filter(key => {
-        var value = config.storeViews[key]
-        return typeof value === 'object' && value.disabled === false
+    enableColumns () {
+      var enableStoreViews = Object.keys(store.state.config.storeViews).filter((key) => {
+        var value = store.state.config.storeViews[key]
+        return (typeof value === 'object' && value.disabled === false)
       })
       return enableStoreViews.length > this.minCountryPerColumn
     }
   },
   methods: {
-    close() {
+    close () {
       this.$bus.$emit('modal-hide', 'modal-switcher')
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-h3 {
-  margin-top: 0;
-  margin-bottom: 0.5em;
-}
-.columns {
-  -moz-column-count: 2;
-  column-count: 2;
-  column-gap: 15px;
-  .country {
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
   }
-}
-.country {
-  margin-bottom: 2em;
-  color: #4f4f4f;
-}
-ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  margin-left: -1em;
-  li {
-    display: inline-block;
-    margin-left: 1em;
-    a {
-      font-size: 0.9em;
+  .columns {
+    -moz-column-count: 2;
+    column-count: 2;
+    column-gap: 15px;
+    .country {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
   }
-}
+  .country {
+    margin-bottom: 2em;
+    color: #4f4f4f;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-left: -1em;
+    li {
+      display: inline-block;
+      margin-left: 1em;
+      a {
+        font-size: 0.9em;
+      }
+    }
+  }
 </style>

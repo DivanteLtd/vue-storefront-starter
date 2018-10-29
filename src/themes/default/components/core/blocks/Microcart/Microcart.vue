@@ -47,7 +47,7 @@
       <div v-for="(segment, index) in totals" :key="index" class="row py20" v-if="segment.code !== 'grand_total'">
         <div class="col-xs">
           {{ segment.title }}
-          <button v-if="coupon && segment.code === 'discount'" type="button" class="p0 brdr-none bg-cl-transparent close delete-button ml10" @click="removeCoupon">
+          <button v-if="appliedCoupon && segment.code === 'discount'" type="button" class="p0 brdr-none bg-cl-transparent close delete-button ml10" @click="clearCoupon">
             <i class="material-icons cl-accent">
               close
             </i>
@@ -70,9 +70,9 @@
         <div v-if="OnlineOnly && addCouponPressed" class="col-xs-12 pt30 coupon-wrapper">
           <div class="coupon-input">
             <label class="h6 cl-secondary">{{ $t('Discount code') }}</label>
-            <base-input type="text" id="couponinput" :autofocus="true" v-model.trim="couponCode" @keyup="enterCoupon"/>
+            <base-input type="text" id="couponinput" :autofocus="true" v-model.trim="couponCode" @keyup.enter="setCoupon"/>
           </div>
-          <button-outline color="dark" :disabled="!couponCode" @click.native="applyCoupon">{{ $t('Add discount code') }}</button-outline>
+          <button-outline color="dark" :disabled="!couponCode" @click.native="setCoupon">{{ $t('Add discount code') }}</button-outline>
         </div>
       </div>
 
@@ -85,6 +85,7 @@
         </div>
       </div>
     </div>
+
     <div
       class="row py20 px40 middle-xs actions"
       v-if="productsInCart.length && !isCheckoutMode"
@@ -109,7 +110,10 @@
 </template>
 
 <script>
+import i18n from '@vue-storefront/i18n'
 import Microcart from '@vue-storefront/core/components/blocks/Microcart/Microcart'
+import VueOfflineMixin from 'vue-offline/mixin'
+import onEscapePress from '@vue-storefront/core/mixins/onEscapePress'
 
 import BaseInput from 'theme/components/core/blocks/Form/BaseInput'
 import ButtonFull from 'theme/components/theme/ButtonFull'
@@ -123,111 +127,157 @@ export default {
     ButtonOutline,
     BaseInput
   },
-  mixins: [Microcart]
+  mixins: [
+    Microcart,
+    VueOfflineMixin,
+    onEscapePress
+  ],
+  data () {
+    return {
+      addCouponPressed: false,
+      couponCode: ''
+    }
+  },
+  props: {
+    isCheckoutMode: {
+      type: Boolean,
+      required: false,
+      default: () => false
+    }
+  },
+  methods: {
+    addDiscountCoupon () {
+      this.addCouponPressed = true
+    },
+    clearCoupon () {
+      this.removeCoupon()
+      this.addCouponPressed = false
+    },
+    setCoupon () {
+      this.applyCoupon(this.couponCode).then(() => {
+        this.addCouponPressed = false
+        this.couponCode = ''
+      }).catch(() => {
+        this.$store.dispatch('notification/spawnNotification', {
+          type: 'warning',
+          message: i18n.t("You've entered an incorrect coupon code. Please try again."),
+          action1: { label: i18n.t('OK') }
+        })
+      })
+    },
+    closeMicrocartExtend () {
+      this.closeMicrocart()
+      this.$store.commit('ui/setSidebar', false)
+      this.addCouponPressed = false
+    },
+    onEscapePress () {
+      this.closeMicrocart()
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/animations/transitions';
+  @import "~theme/css/animations/transitions";
 
-.microcart {
-  top: 0;
-  right: 0;
-  z-index: 3;
-  height: 100%;
-  width: 800px;
-  min-width: 320px;
-  transform: translateX(100%);
-  transition: transform 300ms $motion-main;
-  overflow-y: auto;
-  overflow-x: hidden;
-  &.active {
-    transform: translateX(0);
-  }
-}
-
-.close {
-  i {
-    opacity: 0.6;
-  }
-  &:hover,
-  &:focus {
-    i {
-      opacity: 1;
+  .microcart {
+    top: 0;
+    right: 0;
+    z-index: 3;
+    height: 100%;
+    width: 800px;
+    min-width: 320px;
+    transform: translateX(100%);
+    transition: transform 300ms $motion-main;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &.active {
+      transform: translateX(0)
     }
   }
-}
 
-.heading {
-  @media (max-width: 767px) {
-    margin: 12px 0 12px 15px;
-    font-size: 24px;
-  }
-}
-
-.products {
-  @media (max-width: 767px) {
-    padding: 30px 15px;
-  }
-}
-
-.actions {
-  @media (max-width: 767px) {
-    padding: 0 15px;
-  }
-  .link {
-    @media (max-width: 767px) {
-      display: flex;
-      justify-content: center;
-      padding: 20px 70px;
-      &.checkout {
-        margin-top: 55px;
-        padding: 0;
+  .close {
+    i {
+      opacity: 0.6;
+    }
+    &:hover,
+    &:focus {
+      i {
+        opacity: 1;
       }
     }
   }
-}
 
-.summary {
-  @media (max-width: 767px) {
-    padding: 0 15px;
-    font-size: 12px;
-  }
-}
-
-.summary-heading {
-  @media (max-width: 767px) {
-    font-size: 18px;
-  }
-}
-
-.total-price-label {
-  @media (max-width: 767px) {
-    font-size: 18px;
-  }
-}
-
-.total-price-value {
-  @media (max-width: 767px) {
-    font-size: 24px;
-  }
-}
-
-.delete-button {
-  vertical-align: middle;
-}
-
-.coupon-wrapper {
-  display: flex;
-
-  .button-outline {
-    text-transform: inherit;
-    width: 50%;
+  .heading {
+    @media (max-width: 767px) {
+      margin: 12px 0 12px 15px;
+      font-size: 24px;
+    }
   }
 
-  .coupon-input {
-    margin-right: 20px;
-    width: 100%;
+  .products {
+    @media (max-width: 767px) {
+      padding: 30px 15px;
+    }
   }
-}
+
+  .actions {
+    @media (max-width: 767px) {
+      padding: 0 15px;
+    }
+    .link {
+      @media (max-width: 767px) {
+        display: flex;
+        justify-content: center;
+        padding: 20px 70px;
+        &.checkout {
+          margin-top: 55px;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .summary {
+    @media (max-width: 767px) {
+      padding:  0 15px;
+      font-size: 12px;
+    }
+  }
+
+  .summary-heading {
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
+  }
+
+  .total-price-label {
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
+  }
+
+  .total-price-value {
+    @media (max-width: 767px) {
+      font-size: 24px;
+    }
+  }
+
+  .delete-button {
+    vertical-align: middle;
+  }
+
+  .coupon-wrapper {
+    display: flex;
+
+    .button-outline {
+      text-transform: inherit;
+      width: 50%;
+    }
+
+    .coupon-input {
+      margin-right: 20px;
+      width: 100%;
+    }
+  }
 </style>

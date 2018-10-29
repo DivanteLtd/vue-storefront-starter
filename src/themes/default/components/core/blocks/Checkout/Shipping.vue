@@ -204,7 +204,7 @@
             <button-full
               data-testid="shippingSubmit"
               @click.native="sendDataToCheckout"
-              :class="{ 'ripple': true, 'button-disabled' : $v.shipping.$invalid}"
+              :disabled="$v.shipping.$invalid"
             >
               {{ $t('Continue to payment') }}
             </button-full>
@@ -272,8 +272,8 @@ export default {
   },
   mixins: [shipping],
   computed: {
-    countryOptions() {
-      return this.countries.map(item => {
+    countryOptions () {
+      return this.countries.map((item) => {
         return {
           value: item.code,
           label: item.name

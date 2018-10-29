@@ -27,24 +27,31 @@
 </template>
 
 <script>
-import i18n from '@vue-storefront/i18n'
 import AccountIcon from '@vue-storefront/core/components/blocks/Header/AccountIcon'
 
 export default {
   mixins: [AccountIcon],
-  data() {
+  data () {
     return {
       navigation: [
-        { title: i18n.t('My profile'), link: '/my-account' },
-        {
-          title: i18n.t('My shipping details'),
-          link: '/my-account/shipping-details'
-        },
-        { title: i18n.t('My newsletter'), link: '/my-account/newsletter' },
-        { title: i18n.t('My orders'), link: '/my-account/orders' },
-        { title: i18n.t('My loyalty card'), link: '#' },
-        { title: i18n.t('My product reviews'), link: '#' }
+        { title: this.$t('My profile'), link: '/my-account' },
+        { title: this.$t('My shipping details'), link: '/my-account/shipping-details' },
+        { title: this.$t('My newsletter'), link: '/my-account/newsletter' },
+        { title: this.$t('My orders'), link: '/my-account/orders' },
+        { title: this.$t('My loyalty card'), link: '#' },
+        { title: this.$t('My product reviews'), link: '#' }
       ]
+    }
+  },
+  methods: {
+    notify (title) {
+      if (title === 'My loyalty card' || title === 'My product reviews') {
+        this.$store.dispatch('notification/spawnNotification', {
+          type: 'warning',
+          message: this.$t('This feature is not implemented yet! Please take a look at https://github.com/DivanteLtd/vue-storefront/issues for our Roadmap!'),
+          action1: { label: this.$t('OK') }
+        })
+      }
     }
   }
 }
@@ -57,6 +64,7 @@ export default {
 $color-icon-hover: color(secondary, $colors-background);
 
 .dropdown {
+
   button {
     pointer-events: none;
   }
@@ -68,17 +76,18 @@ $color-icon-hover: color(secondary, $colors-background);
     top: 100%;
     width: 160px;
     z-index: 1;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
 
   a {
-    opacity: 0.6;
+    opacity: .6;
 
     &:hover,
     &:focus {
       background-color: $color-icon-hover;
       opacity: 1;
     }
+
   }
 
   @media (min-width: 768px) {
@@ -86,5 +95,6 @@ $color-icon-hover: color(secondary, $colors-background);
       display: block;
     }
   }
+
 }
 </style>

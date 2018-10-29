@@ -45,13 +45,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-@import '~theme/css/base/text';
-$color-tertiary: color(tertiary);
-$color-black: color(black);
-$color-puerto-rico: color(puerto-rico);
-$color-hover: color(tertiary, $colors-background);
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
+  @import '~theme/css/base/text';
+  $color-tertiary: color(tertiary);
+  $color-black: color(black);
+  $color-puerto-rico: color(puerto-rico);
+  $color-hover: color(tertiary, $colors-background);
 
 .select-wrapper {
   &::after {
@@ -104,8 +104,7 @@ $color-hover: color(tertiary, $colors-background);
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
   }
-  select:focus ~ label,
-  select:not(.empty) ~ label {
+  select:focus ~ label, select:not(.empty) ~ label {
     top: -10px;
     font-size: 14px;
     color: $color-puerto-rico;

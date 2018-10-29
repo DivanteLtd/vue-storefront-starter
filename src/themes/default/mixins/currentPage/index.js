@@ -1,5 +1,5 @@
 export default {
-  data() {
+  data () {
     return {
       productPageRoutes: [
         'product',
@@ -15,17 +15,30 @@ export default {
     }
   },
   watch: {
-    '$route.name': function() {
+    '$route.name': function () {
       this.setCurrentPage()
     }
   },
-  created() {
+  computed: {
+    canGoBack () {
+      return !this.isHistoryEmpty() && this.isProductPage
+    }
+  },
+  created () {
     this.setCurrentPage()
   },
   methods: {
-    setCurrentPage() {
+    setCurrentPage () {
       this.isProductPage = this.productPageRoutes.includes(this.$route.name)
       this.isCheckoutPage = this.$route.name === 'checkout'
+    },
+    // Check if history is empty
+    isHistoryEmpty () {
+      if (typeof window !== 'undefined') {
+        return window.history.length <= 1
+      }
+
+      return false
     }
   }
 }

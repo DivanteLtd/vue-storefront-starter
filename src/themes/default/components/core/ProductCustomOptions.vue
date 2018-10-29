@@ -53,105 +53,104 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-$color-tertiary: color(tertiary);
-$color-black: color(black);
-$color-hover: color(tertiary, $colors-background);
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
+  $color-tertiary: color(tertiary);
+  $color-black: color(black);
+  $color-hover: color(tertiary, $colors-background);
 
-$bg-secondary: color(secondary, $colors-background);
-$color-secondary: color(secondary);
-$color-error: color(error);
+  $bg-secondary: color(secondary, $colors-background);
+  $color-secondary: color(secondary);
+  $color-error: color(error);
 
-.custom-option > label {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+  .custom-option > label {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 
-.error {
-  color: $color-error;
-  padding-top: 5px;
-  display: block;
-}
-$color-silver: color(silver);
-$color-active: color(secondary);
-$color-white: color(white);
+  .error {
+    color: $color-error;
+    padding-top: 5px;
+    display: block;
+  }
+  $color-silver: color(silver);
+  $color-active: color(secondary);
+  $color-white: color(white);
 
-.relative label {
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 30px;
-  &:before {
-    content: '';
+  .relative label {
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 30px;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0;
+      width: 22px;
+      height: 22px;
+      background-color: $color-white;
+      border: 1px solid $color-silver;
+      cursor: pointer;
+    }
+  }
+  input[type='text'] {
+    transition: 0.3s all;
+    &::-webkit-input-placeholder {
+      color: $color-tertiary;
+    }
+    &::-moz-placeholder {
+      color: $color-tertiary;
+    }
+    &:hover,
+    &:focus {
+      outline: none;
+      border-color: $color-black;
+    }
+    background: inherit;
+  }
+  input[type='radio'], input[type='checkbox']  {
     position: absolute;
     top: 3px;
     left: 0;
-    width: 22px;
-    height: 22px;
-    background-color: $color-white;
-    border: 1px solid $color-silver;
-    cursor: pointer;
-  }
-}
-input[type='text'] {
-  transition: 0.3s all;
-  &::-webkit-input-placeholder {
-    color: $color-tertiary;
-  }
-  &::-moz-placeholder {
-    color: $color-tertiary;
-  }
-  &:hover,
-  &:focus {
-    outline: none;
-    border-color: $color-black;
-  }
-  background: inherit;
-}
-input[type='radio'],
-input[type='checkbox'] {
-  position: absolute;
-  top: 3px;
-  left: 0;
-  &:checked + label {
-    &:before {
-      background-color: $color-silver;
-      border-color: $color-silver;
-      cursor: pointer;
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      top: 9px;
-      left: 5px;
-      width: 11px;
-      height: 5px;
-      border: 3px solid $color-white;
-      border-top: none;
-      border-right: none;
-      background-color: $color-silver;
-      transform: rotate(-45deg);
-    }
-  }
-  &:hover,
-  &:focus {
-    + label {
+    &:checked + label {
       &:before {
-        border-color: $color-active;
+        background-color: $color-silver;
+        border-color: $color-silver;
+        cursor: pointer;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 9px;
+        left: 5px;
+        width: 11px;
+        height: 5px;
+        border: 3px solid $color-white;
+        border-top: none;
+        border-right: none;
+        background-color: $color-silver;
+        transform: rotate(-45deg);
       }
     }
-  }
-  &:disabled + label {
-    cursor: not-allowed;
     &:hover,
     &:focus {
-      &:before {
-        border-color: $color-silver;
-        cursor: not-allowed;
+      + label {
+        &:before {
+          border-color: $color-active;
+        }
+      }
+    }
+    &:disabled + label {
+      cursor: not-allowed;
+      &:hover,
+      &:focus {
+        &:before {
+          border-color: $color-silver;
+          cursor: not-allowed;
+        }
       }
     }
   }
-}
 </style>

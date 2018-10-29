@@ -55,7 +55,7 @@ import ProductTile from '../components/core/ProductTile.vue'
 export default {
   name: 'PageNotFound',
   computed: {
-    ourBestsellersCollection() {
+    ourBestsellersCollection () {
       return this.$store.state.homepage.bestsellers
     }
   },
@@ -63,7 +63,7 @@ export default {
     ProductTile
   },
   methods: {
-    toggleSearchpanel() {
+    toggleSearchpanel () {
       this.$bus.$emit('focusSearchInput')
       this.$store.commit('ui/setSearchpanel', true)
     }
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-a {
-  text-decoration: underline;
-}
+  a {
+    text-decoration: underline;
+  }
 </style>

@@ -104,75 +104,74 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.image {
-  mix-blend-mode: multiply;
-  vertical-align: top;
-  width: 150px;
-  @media (max-width: 767px) {
-    width: 100px;
-  }
-}
-
-.details {
-  flex-direction: column;
-  @media (max-width: 767px) {
-    padding: 0 10px 0 20px;
-  }
-}
-
-.name {
-  @media (max-width: 767px) {
-    font-size: 14px;
-  }
-}
-
-.options,
-.sku {
-  @media (max-width: 767px) {
-    font-size: 10px;
-  }
-}
-
-.qty {
-  @media (max-width: 767px) {
-    font-size: 12px;
-  }
-}
-
-.actions {
-  flex-direction: column;
-  @media (max-width: 767px) {
-    padding: 0;
-    font-size: 12px;
-  }
-  .links {
+  .image {
+    mix-blend-mode: multiply;
+    vertical-align: top;
+    width: 150px;
     @media (max-width: 767px) {
-      margin-top: 20px;
+      width: 100px;
     }
   }
-}
 
-.price-special {
-  @media (max-width: 767px) {
-    font-size: 14px;
+  .details {
+    flex-direction: column;
+    @media (max-width: 767px) {
+      padding: 0 10px 0 20px;
+    }
   }
-}
 
-.price-original {
-  text-decoration: line-through;
-}
-
-.price-regular {
-  @media (max-width: 767px) {
-    font-size: 14px;
+  .name {
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
   }
-}
 
-input {
-  width: 30px;
-}
+  .options, .sku {
+    @media (max-width: 767px) {
+      font-size: 10px;
+    }
+  }
 
-.flex-nowrap {
-  flex-wrap: nowrap;
-}
+  .qty {
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
+  }
+
+  .actions {
+    flex-direction: column;
+    @media (max-width: 767px) {
+      padding: 0;
+      font-size: 12px;
+    }
+    .links {
+      @media (max-width: 767px) {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .price-special {
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+  }
+
+  .price-original {
+    text-decoration: line-through;
+  }
+
+  .price-regular {
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+  }
+
+  input {
+    width: 30px;
+  }
+
+  .flex-nowrap {
+    flex-wrap: nowrap;
+  }
 </style>
